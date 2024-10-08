@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Informal Recycling in Athens's backyard</title>
+
+   
+    <link href="scrolly-styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+    <style>
+        .map-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .map-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .map-controls button {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .map-controls button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        .map-controls button.active {
+            background-color: #2f57ea;
+            color: white;
+        }
+        .with-image-bg {
+            position: relative;
+            background-size: cover;
+            margin-bottom: 2em;
+    
+            /* Center everything inside */
+            min-height: 90svh;
+            /* height: 100%; */
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 40px;
+    
+            /* White text with a shadow */
+            color: white;
+            text-shadow: 0px 0px 30px black,
+                0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-image: url('wasteland-cover.jpg');
+        }
+    
+        .image-container {
+            position: relative;
+            max-width: 100%;
+            margin-bottom: 1.2em;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #informal-flow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        #toggle-flow {
+            position: fixed;
+            right: 20px; /* Default position for mobile */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            padding: 0.3em 0.6em; /* Smaller padding */
+            font-size: 0.9em; /* Smaller font size */
+            background-color: #2f57ea;
+            color: white;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            display: block; 
+        }
+
+        #toggle-flow:hover {
+            opacity: 1;
+            background-color: #2f57ea;
+        }
+
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-top: 1em;
+        }
+         /* Adjust button position for desktop */
+         @media (min-width: 641px) {
+            #toggle-flow {
+                right: calc(50% - 340px); /* 20px to the right of a 640px centered content */
+            }
+        }
+        body {
+            margin: 0;
+            font-size: 20px;
+            font-family: Helvetica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 3em 0;
+        }
+
+        a {
+            color: #070707;
+        }
+
+        .footer {
+            background: #f4f4f4;
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: 4em;
+            padding: 4em 0;
+        }
+
+        figure {
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        figcaption {
+            font-size: 0.8em;
+            text-align: center;
+            margin-top: 0.5em;
+            color: #666;
+        }
+
+        h1 {
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 3em;
+            line-height: 1.1;
+        }
+        h4 {
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: italic; /* Use font-style for italics */
+            font-weight: normal; /* Normal weight for quotes */
+            font-size: 1.1em; /* Slightly larger than body text */
+            line-height: 1.4; /* Improved line height for readability */
+            margin-left: 10%; /* Move quote to the right */
+            margin-right: 10%; /* Optional: reduce width on the right side too */
+            color:#2f57ea; /* Slightly darker shade for contrast */
+            border-left: 3px solid #2f57ea; /* Add a left border for emphasis */
+            padding-left: 15px; /* Add some padding to separate text from border */
+        }
+
+        .subhead {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        iframe,
+        img,
+        video {
+            max-width: 100%;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        .full-width figure {
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        iframe {
+            padding-bottom: 1.2em;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: #fff880;
+        }
+
+
+        /* margin on mobile */
+        @media (max-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+
+            .content {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+        }
+    </style>
+    <link href="scrolly-styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+    <!-- Image background & Titles -->
+    <div class="header with-image-bg">
+        <div class="content">
+            <h1>Recycling <br>in Athens’ backyard:<br> the racialized violence of urban metabolisms</h1>
+            <p class="subhead">A research on the Romani communities of Aspropyrgos working and living conditions in relation
+                to infromal waste recycling and environmental racism.
+            </p>
+        </div>
+    </div>
+    <div class="content">
+
+        <div class="byline">
+            <p>By <a href="https://www.reportersunited.gr/ru-author/dafni-karavola/">Dafni Karavola</a></p>
+            <p>Published by <a href="https://berlinergazette.de/the-urban-decomposers-of-athens-backyard/">Berliner Gazette</a>.
+                <br>Presented at <a href="https://berlinergazette.de/projects/kin-city/">Kin City Conferene</a>
+                <br>October, 2024</p>
+        </div>
+
+        <p> My journey from Athens’s city center to the Romani settlements of Aspropyrgos begins with crossing Poikilo Mountain. 
+            Much more than just a geophysical border separating the Athenian basin from the Thriassio Plain, the mountain stands 
+            as a symbol of the spatial, social, and economic division between Athens and its industrial satellite, Aspropyrgos. 
+            As I crest the hill, Elefsina Bay unfolds below, and to the left, the Skaramanga Hellenic Shipyards stretch along the 
+            coastline. A few minutes later, the smokestacks of Hellenic Petroleum’s refineries rise, with the Fyli landfill – 
+            Europe’s largest and long overdue for closure – dominating the background. Heading north towards Mount Parnitha, 
+            the road passes a vast, empty lot where the train station sits, recently privatized and destined to become Greece’s 
+            largest logistics hub, a key point in Europe’s supply chain. An entire industrial patchwork stretches across the plain.
+        </p>
+        <p> Beneath this vast industrial surface lies a sharper division in how the area is perceived. For the Greek government, 
+            Thriassio Plain embodies the beating heart of Greece’s economic aspirations, attracting foreign investments, and 
+            contributing around 40% of the nation’s GDP. However, locals always refer to their home town as <b>‘Athens’ backyard,’</b> a
+             place burdened by the costs of industrialization without reaping its rewards. To them, Aspropyrgos has become a dumping 
+             ground for everything undesirable – factories, pollution, and racialized communities alike.
+        </p>
+
+        <h3>Anti-Romani sentiment</h3>
+
+        <figure>
+            <img
+            src="picture-1.png" alt="wastelands in Sofo">
+            <figcaption>Residents of Sofo walking inside the surrounding wastelands to reach the only availiable water source.</figcaption>
+        </figure>
+
+        <p>Aspropyrgos, a town originally built in the mid-20th century to house factory workers, remains home to working-class 
+            families and older generations of refugees. However, the growing industrial and logistics sector has more recently 
+            attracted new migrants from Asia and the Balkans, as well as Greece’s third-largest Romani community. Decades of neglect 
+            and industrial exploitation bred deep frustration, which has been harnessed to fuel racist narratives, particularly against 
+            the Roma. The community is portrayed as contributing to the town’s decline, reinforcing the sentiment that they are as 
+            unwelcome as the industries themselves. Anti-Romani sentiment, shared by both non-Roma Greek residents and local authorities, 
+            has led to severe spatial and infrastructural segregation on the basis of race. While non-Roma Greeks live near the town center, 
+            the Roma have been systematically pushed to secluded locations of the urban periphery, severely impacted by heavy 
+            industrialization and cut-off from basic infrastructure 
+            <a href="https://www.researchgate.net/publication/375095926_Make_Leave_Let_Stay_Trajectory_and_Living_Conditions_in_the_Romani_Settlement_of_Sofo">(Karavola 2023)</a>.
+        </p>
+
+        <p>The settlements of Sofo and Nea Zoi exemplify this racialized expulsion. Surrounded by sparse landscape, animal sheds, 
+            and mounting piles of waste, Sofo is a place that can barely be called habitable. The municipality of Aspropyrgos 
+            denies the community access to basic services, such as electricity, running water, and sewage systems. Dirt tracks 
+            riddled with potholes serve as roads, and makeshift shacks built from discarded materials scavenged from nearby waste 
+            piles substitute for homes. Nea Zoi, similarly deprived, lies next to the Fyli landfill, established in 1982 by the 
+            Greek government as a temporary housing solution for the Roma. Decades later, it remains an unrecognized settlement, 
+            bereft of basic infrastructure (Lydaki 1997). 
+            Both settlements sit on land contaminated with high radiation levels, 
+            water pollution, and soil toxins, a direct result of unchecked industrial activity 
+            <a href="http://anntilogos.blogspot.com/2020/01/blog-post_26.html#more">(Antilogos 2020)</a>.
+        </p>
+    </div>
+
+    <div class="map-container">
+            <img src="map-base_1.jpg" alt="Base map of Aspropyrgos" id="base-map">
+            <img src="residential_1.svg" id="residential" alt="Residential areas in Aspropyrgos" style="display: none;">
+            <img src="industrial_1.svg" id="industrial" alt="Industrial areas in Aspropyrgos" style="display: none;">
+            <img src="settlements_1.svg" id="settlements" alt="Romani settlements in Aspropyrgos" style="display: none;">
+            <img src="formal-map_1.svg" id="formal-map" alt="Formal recycling network in Aspropyrgos" style="display: none;">
+            <img src="informal-map_1.svg" id="informal-map" alt="Informal recycling networks in Aspropyrgos" style="display: none;">
+            
+            <div class="map-controls">
+                <button id="toggle-residential">non-Romani residential</button>
+                <button id="toggle-industrial">Industrial landuse</button>
+                <button id="toggle-settlements">Romani residential</button>
+                <button id="toggle-formal">Formal Recycling</button>
+                <button id="toggle-informal">Informal Recycling</button>
+            </div>
+    </div>
+
+    <div class="content">
+
+        <p><br><br>The forced proximity of Romani settlements and industrial wastelands is not incidental, but a deliberate aspect 
+            of racialized economic exploitation. Local industries and municipal authorities have actively turned these marginalized 
+            spaces into ‘sacrifice zones’ for the byproducts of industrial growth. In Sofo, local industries, benefiting from 
+            weak regulations and oversight, avoid the costs of proper waste management by dumping construction debris, industrial 
+            waste, and toxic materials near the settlement 
+            Similarly, the indifference towards the Roma of Nea Zoi
+             fosters a zone where the landfill can expand towards the settlement with little oversight. These environmental hazards 
+             degrade the land, turning it into uninhabitable zones where no one wants to live. In this sense, the Roma are not only 
+             socially marginalized, they are also physically confined to the most poisoned spaces, the areas that bear the heaviest 
+             consequences of industrialization.
+        </p>
+
+        <h3>Environmental violence and racial capitalism</h3>
+
+        <p>However, environmental violence inflicted upon the Roma cannot be interpreted merely as a byproduct of industrial expansion. 
+            Rather, we must recognize “the role of racism in enabling key moments of capitalist development,” as articulated 
+            by Cedric Robinson’s concept of racial capitalism (Robinson 1983). Gargi Bhattacharyya expands on this idea, explaining 
+            that racial capitalism is not simply about the differential treatment of racial groups, but “an account of how the 
+            world made through racism shapes patterns of capitalist development.” In this sense, racial capitalism is best understood 
+            as a form of “racecraft” within the economic system, where racialization is instrumentalized to sustain economic 
+            exploitation (Bhattacharyya 2018). Through this lens, the intertwined nature of environmental violence and economic 
+            exploitation in Aspropyrgos is starkly evident when we consider the Roma’s dependence on waste collection for survival.
+        </p>
+
+        <h4>“We all work in scrap metal.” 
+            <br>–Roma resident of Sofo.</h4>
+
+            <figure>
+                <img
+                src="waste-incineration.jpg" alt="waste incineration in Sofo">
+                <figcaption>Waste incineration residues in Sofo. </figcaption>
+            </figure>
+            
+
+        <p>For most Roma, informal recycling within these industrial wastelands is their primary source of income. This labor, however, 
+            yields very little and studies show that informal recyclers earn no more than 11 euros per day (Fotopoulou 2017), 
+            keeping the majority of Romani families well below the poverty line. Far from a matter of choice, this work 
+            represents a survival strategy, an adaptive response to scarcity. Equipped only with pickup trucks, Roma wander 
+            around the industrial zones of Thriassio, collecting discarded materials like electrical equipment, tires, and 
+            metal bars to sell as scrap. On bad days, people are forced to scavenge through Fyli’s landfill for a few kilos 
+            of metal. On better days, industries may informally hire them to collect steel bars from construction sites, 
+            bypassing official waste disposal processes. Regardless of the circumstances, their forced proximity to these 
+            toxic wastelands is both a consequence and a condition of their economic role: they are expected to extract value 
+            from the very materials discarded by a system that continues to marginalize and exploit them.
+        </p>
+
+        <p>To add value and get higher prices, the Roma sort and process the collected waste on site, within the settlements. 
+            This involves dismantling, cleaning, and changing the physical form of the materials in order to extract pure materials. 
+            Since Roma do not have access to proper machinery, burning is the only way to separate metal from cables, electrical 
+            appliances and other items. As a result, on cloudy, windless days, large fires are lit and everything is thrown in. 
+            The process is labor intensive, dangerous to the environment, and involves the entire community, including women and 
+            children. Burning plastics, Freon from refrigerators and other materials releases toxins into the air and soil. 
+            While the valuable scrap is collected and taken to scrap yards, the non-recyclable parts and toxic residues are 
+            left behind, further polluting the land and endangering the health of the community.
+        </p>
+
+        <p>As one local informal recycler described:</p>
+
+        <h4>“Sometimes, when the fire settles after the rain you see people walking around in the rubble, dazed from the toxic fumes.”</h4>
+
+        <h3>Filling gaps in the formal recycling system</h3>
+
+        <p>Despite being the most affected by the pollution caused by both industrial activity and informal recycling, the Roma are scapegoated 
+            as ‘hygienic bombs.’ In 2019, an epidemiological study revealed dangerously high levels of hexavalent chromium in the Nea 
+            Zoi settlement, a toxic and carcinogenic substance linked to illegal industrial waste disposal (ΕΔΣΝΑ, 2019). Additionally, 
+            scientists found high concentrations of dioxins in the soil mainly coming from combustion residues. The Aspropyrgos municipal 
+            council, however, selectively addressed only the latter, focusing on the Roma’s waste-burning practices. By doing so, 
+            the authorities perpetuated antiromani rhetoric, shifting blame onto the community while ignoring the industrial actors 
+            as the root of the problem.
+        </p>
+
+        <div class="image-container">
+            <img src="base.png" alt="Base image of Athens" id="base-image">
+            <img src="informal_flow.svg" id="informal-flow" alt="Informal flow overlay">
+        </div>
+        <button id="toggle-flow">Informal</button>
+        <div id="error-message"></div>
+
+        <p>In reality, scapegoating the Roma serves a dual purpose for local authorities: on the one hand, it diverts public anger 
+            away from industrial polluters and onto an already marginalized social group; on the other hand, it maintains a 
+            mutually beneficial arrangement between the state and local industries, who both profit from the Roma’s labor 
+            in waste management
+            <a href="https://dspace.lib.ntua.gr/xmlui/handle/123456789/51242">(Smyrniotis and Choleva 2020)</a>.
+        </p>
+
+        <p>For the state, outsourcing waste management to informal recyclers fills gaps in the formal recycling system, 
+            while sparing the government from investing in expensive infrastructure. Greece’s recycling system is narrow 
+            and technologically underdeveloped, heavily relying on manual labor. By forcing Roma to take on the most 
+            dangerous and labor-intensive tasks, such as scavenging landfills and collecting waste door-to-door, the 
+            formal sector boosts recycling rates while avoiding the costs of formal waste management. With less waste 
+            left for disposal, the state saves money and time on collection and transport. Additionally, the manual 
+            sorting and separation done by Roma workers eases the burden on recycling centers. Finally, their precarious 
+            employment status frees the state from providing wages or benefits <a href="https://dspace.lib.ntua.gr/xmlui/handle/123456789/51242">(Smyrniotis and Choleva 2020)</a>.
+        </p>
+
+        <p>Local industries also benefit from this arrangement. By offloading waste to informal recyclers, industries 
+            sidestep the costs of proper disposal. Roma process the illegally discarded materials, selling the 
+            valuable scrap to small scrapyards, which then resell it up the supply chain, eventually fueling local 
+            industries and international markets with necessary raw materials (Wilson, Velis, and Cheeseman 2006; 
+            Smyrniotis and Choleva 2020). As the materials move up the chain, their value increases, but because 
+            they originate from the black market, they remain cheaper, free from taxes, and the wage costs. This 
+            creates a steady, cost-effective supply of raw materials for manufacturing industries, replacing more 
+            expensive imported options and allowing factories to significantly reduce costs at multiple stages of 
+            production <a href="https://dspace.lib.ntua.gr/xmlui/handle/123456789/51242">(Smyrniotis and Choleva 2020)</a>.
+        </p>
+
+        <h3>The struggles of invisibilized labor</h3>
+
+        <p>Meanwhile, the Roma remain trapped at the bottom of the secondary materials trade, performing underpaid 
+            and invisibilized labor. The more exploited and marginalized their work, the greater the profit 
+            margins for the industries. It is on this inseparable system of labor exploitation and environmental 
+            destruction that Aspropyrgos’ engine of growth finds its foundation. The life of the steel 
+            molecules that build the world’s great cities begins right there, the moment a laundry wire, 
+            a button, or even a nail is picked up by an informal recycler. Acting as urban decomposers, 
+            they transform the discarded and unwanted into the raw materials that fuel industrial development-but 
+            at a profound human cost.
+        </p>
+
+        <p>However, it is also where the potential power of the people resides. As Christos Karakepelis, 
+            filmmaker of 
+            <a href="https://neoskosmos.com/en/2011/07/26/features/the-raw-material-of-greece/">“Raw Material” (2011)</a>               
+            observes: 
+        </p>
+            
+        <h4>“Athens is a small city. If [informal recyclers] 
+            stop collecting metal for a week, the national economy will collapse. If they organize a strike 
+            for a month, the industry and the real estate stock market would be paralyzed, as the price 
+            of metal bars would skyrocket” 
+            <br><a href="https://dspace.lib.ntua.gr/xmlui/handle/123456789/51242">(Smyrniotis and Choleva 2020)</a>.</h4> 
+        
+        <p>Though such a strike has yet to 
+            happen, one thing is clear in Aspropyrgos: the fight for environmental justice cannot be separated 
+            from the struggles for racial and economic justice. 
+        </p>
+
+        <p>As members of the community themselves say: </p>
+        
+        <h4>“We want to bring the water and the light to the settlement. 
+            We have repeatedly asked the mayor to give us proper houses. 
+            We need to stop living and working next to this waste. 
+            This is our fight, to make Sofo a better home for our children.”
+        </h4>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('toggle-flow');
+            const informalFlow = document.getElementById('informal-flow');
+            const baseImage = document.getElementById('base-image');
+            const errorMessage = document.getElementById('error-message');
+            const imageContainer = document.querySelector('.image-container');
+
+            console.log('DOM loaded, elements found:', {
+                toggleButton: !!toggleButton,
+                informalFlow: !!informalFlow,
+                baseImage: !!baseImage,
+                errorMessage: !!errorMessage,
+                imageContainer: !!imageContainer
+            });
+
+            // Check if images are loaded correctly
+            function checkImage(img) {
+                return new Promise((resolve, reject) => {
+                    img.onload = () => resolve(true);
+                    img.onerror = () => reject(false);
+                    if (img.complete) {
+                        resolve(true);
+                    }
+                });
+            }
+
+            // Check both images
+            Promise.all([checkImage(baseImage), checkImage(informalFlow)])
+                .then(() => {
+                    toggleButton.disabled = false;
+                    errorMessage.textContent = '';
+                })
+                .catch(() => {
+                    toggleButton.disabled = true;
+                    errorMessage.textContent = 'Error: One or both images failed to load. Please check the file paths and try again.';
+                });
+
+            toggleButton.addEventListener('click', function() {
+                if (informalFlow.style.display === 'none' || informalFlow.style.display === '') {
+                    informalFlow.style.display = 'block';
+                } else {
+                    informalFlow.style.display = 'none';
+                }
+            });
+
+             // Function to update button position
+             function updateButtonPosition() {
+                if (!imageContainer) {
+                    console.error('Image container not found');
+                    return;
+                }
+
+                const containerRect = imageContainer.getBoundingClientRect();
+                const buttonRect = toggleButton.getBoundingClientRect();
+
+                console.log('Container rect:', containerRect);
+                console.log('Button rect:', buttonRect);
+
+                if (containerRect.top < window.innerHeight && containerRect.bottom > 0) {
+                    // Image is in viewport
+                    toggleButton.style.display = 'block';
+                    
+                    if (containerRect.top > 0) {
+                        // Adjust top position when container top is in view
+                        toggleButton.style.top = `${Math.max(containerRect.top, buttonRect.height / 2)}px`;
+                    } else if (containerRect.bottom < window.innerHeight) {
+                        // Adjust bottom position when container bottom is in view
+                        toggleButton.style.top = `${Math.min(containerRect.bottom, window.innerHeight - buttonRect.height / 2)}px`;
+                    } else {
+                        // Keep button vertically centered
+                        toggleButton.style.top = '50%';
+                    }
+                } else {
+                    // Image is not in viewport
+                    toggleButton.style.display = 'none';
+                }
+
+                console.log('Button display:', toggleButton.style.display);
+                console.log('Button top:', toggleButton.style.top);
+            }
+
+            // Update button position on scroll and resize
+            window.addEventListener('scroll', updateButtonPosition);
+            window.addEventListener('resize', updateButtonPosition);
+
+            // Initial position update
+            updateButtonPosition();
+            console.log('Initial button position updated');
+        });
+    </script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const layers = {
+                'residential': document.getElementById('residential'),
+                'industrial': document.getElementById('industrial'),
+                'settlements': document.getElementById('settlements'),
+                'formal-map': document.getElementById('formal-map'),
+                'informal-map': document.getElementById('informal-map')
+            };
+
+            const buttons = {
+                'residential': document.getElementById('toggle-residential'),
+                'industrial': document.getElementById('toggle-industrial'),
+                'settlements': document.getElementById('toggle-settlements'),
+                'formal-map': document.getElementById('toggle-formal'),
+                'informal-map': document.getElementById('toggle-informal')
+            };
+
+            for (const [id, button] of Object.entries(buttons)) {
+                button.addEventListener('click', function() {
+                    const layer = layers[id];
+                    if (layer.style.display === 'none') {
+                        layer.style.display = 'block';
+                        button.classList.add('active');
+                    } else {
+                        layer.style.display = 'none';
+                        button.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+<div class="footer">
+    <div class="content">
+        <p>This is an article was written for and presented at <br>
+             <a href="https://berlinergazette.de/projects/kin-city/">Kin City Conferene</a>
+             by <a href="https://berlinergazette.de/the-urban-decomposers-of-athens-backyard/">Berliner Gazette</a>.
+            <br> The research findings are the result of the MA Research Architecture at Goldsmiths University of London and can be found here: <a href="https://www.researchgate.net/publication/375095926_Make_Leave_Let_Stay_Trajectory_and_Living_Conditions_in_the_Romani_Settlement_of_Sofo">(Karavola 2023)</a>. 
+            <br> All rights remain with the author.
+        </p>
+    </div>
+</div>
+
+</body>
+
+</html>
