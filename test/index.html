@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Story template</title>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-size: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    .content {
+      max-width: 640px;
+      margin: auto;
+    }
+
+    .header {
+      padding: 3em 0;
+    }
+
+
+    iframe,
+    img,
+    video {
+      max-width: 100%;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0;
+      padding-bottom: 1.2em;
+    }
+
+    ul {
+      margin: 0;
+      padding-bottom: 1em;
+      line-height: 1.6;
+    }
+
+    iframe {
+      padding-bottom: 1.2em;
+    }
+
+    .full-width figure {
+      text-align: center;
+    }
+
+
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 18px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+  <div class="content">
+  </div>
+  <section id="scrolly-images" class="scrolly-container">
+    <div class="sticky-thing">
+      <img src="image1-desktop.jpg" alt="Scrolly image">
+    </div>
+    <div class="steps-container">
+      <div class="step" id="step1">
+        <div>
+          <p>Τα δύο πρώτα ξενοδοχεία του Costa Navarino The Romanos Resort και The Westin Resort Costa Navarino στην
+            ΠΟΤΑ Ρωμανού (Περιοχή Ολοκληρωμένης Τουριστικής Ανάπτυξης), ξεκίνησαν να λειτουργούν το 2010.</p>
+        </div>
+      </div>
+      <div class="step" id="step2">
+        <p>To 2011, το 37% (36,76%) της ΠΟΤΑ βρισκόταν εντός της Natura 2000 (με κωδικό GR2550004).</p>
+      </div>
+      <div class="step" id="step3">
+        <p>Το 2017, το υπουργείο Περιβάλλοντος τροποποίησε το όριο όλης της Natura GR2550004.
+          Από την ΠΟΤΑ Ρωμανού, συγκεκριμένα, αφαίρεσε σχεδόν 219 (218,79) στρέμματα, έβγαλε εκτός Natura τα δύο
+          ξενοδοχεία
+          και προσάρμοσε το όριό της στα όρια της ΠΟΤΑ. Πλέον μόνο το 20% (19,96%) της ΠΟΤΑ βρίσκεται εντός Natura.</p>
+      </div>
+      <div class="step" id="step4">
+        <p>Γιατί αφαιρέθηκε αυτή η έκταση; ρωτήσαμε το υπουργείο.
+          Μας απάντησε ότι η «διαφορά εμβαδού» οφείλεται «στην προσαρμογή του παλαιότερου ορίου στα όρια της κεντρικής
+          οδού Πύλου-Γαργαλιάνου» και «στα όρια της ακτογραμμής», δικαιολογώντας μόνο ένα τμήμα των περικοπών.
+        </p>
+      </div>
+      <div class="step" id="step5">
+        <p>Καμία εξήγηση δε δόθηκε για τα 219 στρέμματα των ξενοδοχείων The Romanos Resort και The Westin Resort
+          Costa Navarino και του γκολφ Navarino Dunes που κόπηκαν από την Natura του Ρωμανού.
+          Και όμως, σχεδόν η μισή από την περιοχή Natura εντός της ΠΟΤΑ Ρωμανού έχει αφαιρεθεί.</p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.jpg`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.6,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+     // Set up D3 event listeners
+  for (let i = 1; i <= 5; i++) {
+    d3.select(`#step${i}`).on('stepin', (e) => {
+      updateImage(i - 1);
+    });
+  }
+})();
+</script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 70vh;
+    }
+  </style>
+
+</body>
+
+</html>

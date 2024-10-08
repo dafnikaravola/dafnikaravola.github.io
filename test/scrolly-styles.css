@@ -1,0 +1,137 @@
+.scrolly-container {
+    position: relative;
+    margin-bottom: 1.2em;
+}
+
+.sticky-thing {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100vh; /* Set the height of the container to the viewport height */
+    width: 100%;
+    overflow: hidden;
+}
+
+.sticky-thing > img {
+    width: 100%; /* Make the image take up the full width */
+    height: 100%; /* Make the image take up the full height */
+    object-fit: cover; /* Ensures the image covers the container, potentially cropping */
+}
+
+.video-container {
+    position: sticky;
+    top: 0;
+    z-index: -1;
+}
+
+.scrolly-container video {
+    position: absolute;
+    top: 0;
+    height: auto;
+    width: 100%;
+}
+
+.sticky-thing iframe {
+    position: absolute;
+    top: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.steps-container {
+    transform: translate3d(0,0,0);
+    position: relative;
+    padding: 0;
+    z-index: 10;
+    max-width: 35rem;
+    margin: 0 0 0 auto; /* Changed from margin: 0 auto; */
+    padding-bottom: 4em;
+}
+
+.step {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Changed from center */
+    margin-bottom: 50svh;
+    transform: translate(0px, 0px);
+}
+
+.step p {
+    text-align: left;
+}
+
+.step p:last-child {
+    padding: 0;
+}
+
+.step > * {
+    width: 100%; /* Changed from 700px */
+    max-width: 400px; /* Added to limit width */
+    margin-left: 1.3em;
+    margin-right: 1.3em;
+    text-align: left; /* Changed from center */
+    padding: 1.2em !important;
+    background-color: #f3f0ecda;
+}
+
+.sticky-thing > canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;  
+}
+
+@media only screen and (max-width: 768px) {
+    .sticky-thing {
+        height: 100vh; /* Full viewport height on mobile */
+    }
+
+    .sticky-thing > img {
+        object-fit: contain; /* Ensure the entire image is visible */
+        max-height: 100vh;
+    }
+}
+
+/* Add this media query for tablets and smaller screens */
+@media only screen and (max-width: 1024px) {
+    .sticky-thing {
+        height: auto; /* Allow the container to adjust its height */
+    }
+
+    .sticky-thing > img {
+        height: auto; /* Allow the image to adjust its height */
+        object-fit: contain; /* Ensure the entire image is visible */
+        max-height: 100vh; /* Limit the maximum height to the viewport height */
+    }
+}
+
+/* When it's less than 700 pixels wide, do normal scrollytelling */
+
+@media only screen and (min-width: 700px) {
+    .scrolly-container.side-by-side {
+        display: flex;
+    }
+
+    .scrolly-container.side-by-side>div {
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 0.75em;
+    }
+
+    .scrolly-container.side-by-side .scrolly-overlay {
+        margin-top: 70vh;
+        order: 0;
+        /* Change these to adjust sizing options */
+        min-width: 15rem;
+        max-width: 20rem;
+    }
+
+    .scrolly-container.side-by-side .sticky-thing {
+        order: 1;
+        flex-grow: 2;
+    }
+    /* Add this media query for responsiveness */
+
+}
