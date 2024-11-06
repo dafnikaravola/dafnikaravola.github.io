@@ -1,15 +1,760 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Dafni Karavola - Portfolio</title>
-  </head>
-  <body>
-    <h1>Dafni Karavola - Portfolio</h1>
-    <h2><a href="https://dafnikaravola.github.io/auctions/">Inside Eurobank's Pillar Portfolio:
-      Are auctions disproportionately affecting Athens' poorer?</a></h2>
-    <p>LEDE Project 1</p>
-    <h2><a href="https://dafnikaravola.github.io/consumer's%20basket/">Consumer's basket: aid for consumers or gift for the supermarkets?</a></h2>
-    <p>LEDE Project 2</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dafni-Karavola-Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/roboto-mono/4.0.1/roboto-mono.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/roboto/4.0.1/roboto.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #eaeaea;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  </body>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            margin: 2rem 0;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        section {
+            min-height: auto;
+            padding: 4rem 0; 
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 1rem 0 3rem 0;
+            line-height: 1.8;
+        }
+
+        .scroll-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 2rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .article-card {
+            padding: 1rem;
+            text-decoration: none;
+            color: inherit;
+            background: white;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border-radius: 2px;
+        }
+
+        .article-meta, .article-tags, .work-type {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.15rem;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.4;
+        }
+
+        .article-title {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .article-description {
+            font-size: 0.9rem;
+        }
+
+        /* Resume */
+
+        .resume-section {
+            max-width: 900px;
+        }
+
+        .resume-group h3 {
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .resume-item {
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+       .resume-item:hover {
+            border-left-color: transparent; /* Remove hover border */
+        }
+
+        .resume-date {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.1rem;
+        }
+
+        .resume-org {
+            font-size: 0.9rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .resume-title {
+            font-weight: 500;
+            margin-bottom: 0.1rem;
+        }
+
+        .resume-note {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+         /* Services Section */
+
+         .services-intro {
+            max-width: 700px;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+         .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+            color: #333;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-title {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .skill-group h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Updated Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-category h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+        
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            color: #666;
+        }
+
+        /* Updated CV Download Button */
+
+        .resume-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        .cv-button-container {
+            margin: 0;
+        }
+
+        .cv-download {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cv-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+
+         /* Animation Classes */
+         .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Service Card Animation */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Article Card Animation */
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            border: 1px solid #333;
+            border-radius: 4px;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0 1rem;
+            }
+            
+            nav .nav-content {
+                padding: 0 1rem;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#services">Digital Evidence Lab</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="about" class="intro">
+        <h1>Dafni Karavola</h1>
+        <p class="job-title">Data Journalism • Visual Investigations</p>
+        <p class="bio">
+            Dafni is a freelance data journalist and visual investigator based in Athens, with a background in architectural engineering.
+            She is a member of Reporters United independent investigative network reporting on Romani rights, state and corporate accountability 
+            and environmental issues using data analysis, cartography and OSINT techniques. She has participated in cross-border investigations 
+            and worked with Magma Magazine, Forensic Architecture/Forensis, 
+            Arena for Journalism in Europe and others. She was trained in data journalism at Columbia University in New York, 
+            Reasearch Architecture at Goldsmiths University, in London and architecture at the National Technical University in Athens. 
+            Her interests lie at the intersection of journalism and spatial practices and she loves maps. 
+        </p>
+        <p class="scroll-note">↓ scroll for selected works</p>
+    </section>
+
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+            <!-- Article 1 -->
+            <a href="#" class="article-card" target="_blank">
+                <img src="article-images/sofo-image.png" alt="Roma Settlement Investigation" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Reporters United</span> • 
+                    <span class="date">Coming Soon</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English & Greek</span> • 
+                    <span class="work-type">Investigation, OSINT, Mapping</span>
+                </div>
+                <h3 class="article-title">Forced mobility & infrastructural deprivation: Mapping the Romani settlement of Sofo</h3>
+                <p class="article-description">
+                    Multi-year investigation into the displacement and living conditions of Roma communities in Aspropyrgos, 
+                    combining field research with geospatial analysis.
+                </p>
+            </a>
+           
+            <a href="https://www.reportersunited.gr/en/14444/minotaur-captured-eurobank/" class="article-card" target="_blank">
+                <img src="article-images\minotaur-image.jpg" alt="Minotaur Investigation" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Reporters United</span> • 
+                    <span class="date">Feb 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English</span> • 
+                    <span class="work-type">Investigation, Mapping</span>
+                </div>
+                <h3 class="article-title">Minotaur captured: How a Greek bank and international funds seized people's homes</h3>
+                <p class="article-description">
+                    Investigation into Eurobank's non-performing loans portfolio revealing how property ownership was transferred 
+                    from indebted Greek households to tax havens through a complex corporate structure.
+                </p>
+            </a>
+
+            <a href="https://berlinergazette.de/the-urban-decomposers-of-athens-backyard/" class="article-card" target="_blank">
+                <img src="article-images\recycling-image.jpg" alt="Informal Recycling" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Berliner Gazzette</span> • 
+                    <span class="date">Sept 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English</span> • 
+                    <span class="work-type">Reporting</span>
+                </div>
+                <h3 class="article-title">Recycling in Athens’ backyard, or: the racialized violence of urban metabolisms</h3>
+                <p class="article-description">
+                    As urban decomposers, informal recyclers transform 
+                    the discarded and unwanted into raw materials that fuel industrial development.
+                    The article examines the case of ‘Athens’ backyard’ to show how such an urban 
+                    metabolism is based on a brutal system of environmental racism.
+                </p>
+            </a>
+            
+            <a href="https://www.reportersunited.gr/13681/amilito-nero-costa-navarino/" class="article-card" target="_blank">
+                <img src="article-images\costa-navarino-1-image.JPG" alt="Costa Navarino-1" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Reporters United</span> • 
+                    <span class="date">Sept 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">Greek</span> • 
+                    <span class="work-type">Data Analysis, Mapping</span>
+                </div>
+                <h3 class="article-title">Το αμίλητο νερό του Costa Navarino</h3>
+                <p class="article-description">
+                    Το Costa Navarino, «μια από τις μεγαλύτερες τουριστικές επενδύσεις στη Μεσόγειο», σύμφωνα 
+                    με τον όμιλο ΤΕΜΕΣ στον οποίο ανήκει, χτίζει εδώ και 24 χρόνια τον μύθο του μέσα από 
+                    ένα κρεσέντο αγιογραφιών από τα ΜΜΕ και διαρκείς επαίνους τριών πρωθυπουργών. 
+                    ο Reporters United με επιτόπια έρευνα, με ανάλυση των ποσοτικών δεδομένων της 
+                    διαχείρισης του νερού, με χαρτογράφηση των υποδομών εντός και εκτός Costa Navarino, 
+                    απομυθοποιεί την «αειφορία» του φαραωνικού συγκροτήματος.
+                </p>
+            </a>
+
+           
+            <a href="https://www.reportersunited.gr/13302/pillar-eurobank-pleistiriasmoi/" class="article-card" target="_blank">
+                <img src="article-images\pillar-image.jpg" alt="Pillar Imvestigation Part 2" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Reporters United</span> • 
+                    <span class="date">July 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">Greek</span> • 
+                    <span class="work-type">Investigation, Mapping</span>
+                </div>
+                <h3 class="article-title">Πλειστηριασμοί: H Pillar κερνάει, η Eurobank πίνει</h3>
+                <p class="article-description">
+                    Σκαλίσαμε μέσω του Κτηματολογίου τους τίτλους ιδιοκτησίας των ακινήτων του χαρτοφυλακίου κόκκινων δανείων Pillar 
+                    που εκποιήθηκαν την τελευταία πενταετία σε πλειστηριασμούς και ανακαλύψαμε ποιος τελικά παίρνει τα σπίτια του κόσμου.
+                </p>
+            </a>
+
+            <a href="https://www.reportersunited.gr/12587/kokkinia-daneia-pillar-eurobank/" class="article-card" target="_blank">
+                <img src="article-images\unperforming-loans-image.jpg" alt="Pillar Imvestigation Part 1" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Reporters United</span> • 
+                    <span class="date">June 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">Greek</span> • 
+                    <span class="work-type">Mapping</span>
+                </div>
+                <h3 class="article-title">Κόκκινα δάνεια: Ο μίτος των funds οδηγεί πίσω στη Eurobank</h3>
+                <p class="article-description">
+                    Με βάση το χαρτοφυλάκιο κόκκινων δανείων Pillar της Eurobank, αποκωδικοποιήσαμε πώς μέσω πλειστηριασμών, 
+                    ένα πολυπλόκαμο σχήμα εταιρειών συγκαλύπτει, διανέμει και φυγαδεύει σε φορολογικούς παραδείσους 
+                    μεγάλες υπεραξίες, με την επιδότηση του ελληνικού κράτους.
+                </p>
+            </a>
+
+            <a href="https://dafnikaravola.github.io/auctions/" class="article-card" target="_blank">
+                <img src="article-images\auctions-image.jpg" alt="Auctions Mapping" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Lede Program, Columbia University</span> • 
+                    <span class="date">July 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English</span> • 
+                    <span class="work-type">Investigation, Visual Storytelling</span>
+                </div>
+                <h3 class="article-title">Inside Eurobank's Pillar Portfolio:
+                    Are auctions disproportionately affecting Athens' poorer?</h3>
+                <p class="article-description">
+                    An investigation into the auctions' system through RU's published database, alongside an analysis 
+                    of Athens' historical class distribution questions who are those most affected by the bank speculation scheme.
+                </p>
+            </a>
+
+            <a href="https://dafnikaravola.github.io/consumer's%20basket/" class="article-card" target="_blank">
+                <img src="article-images\consumer-image.jpg" alt="Consumer's Basket" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Lede Program, Columbia University</span> • 
+                    <span class="date">Aug 2024</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English</span> • 
+                    <span class="work-type">Investigation, Data</span>
+                </div>
+                <h3 class="article-title">Consumer's basket: aid for consumers or gift for the supermarkets?</h3>
+                <p class="article-description">
+                    Consumer's basket was advertised as a government initiative to help combat soaring prices in basic groceries necessities. 
+                    But does it really work as a consumers' relief or is it designed to benefit large supermarket industries?
+                </p>
+            </a>
+
+            <a href="https://burning-an-illusion.uk/" class="article-card" target="_blank">
+                <img src="article-images\burning-an-illusion.jpg" alt="Burning an Illustion" class="article-image">
+                <div class="article-meta">
+                    <span class="outlet">Centre for Research Architecture</span> • 
+                    <span class="date">Sept 2023</span>
+                </div>
+                <div class="article-tags">
+                    <span class="language">English</span> • 
+                    <span class="work-type">Investigation, Visuals</span>
+                </div>
+                <h3 class="article-title">Burning an Illusion: an investigation of the investigation into the 1981 New Cross Fire</h3>
+                <p class="article-description">
+                    An open-source reconstruction of the events that led, happened and followed the January 18th, 1981 New Cross Fire
+                    in London, UK. The investigation exposes how racism within different institutions such as 
+                    media, the police, and the coroner’s office contributed to the inconclusive results of the original inquiry that left 
+                    the deaths of fourteen young black people unpunished.
+                </p>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="services"  class="fade-in">
+        <h2>Digital Evidence Lab</h2>
+        <p class="services-intro">
+            'When was this photo really taken?' 'Does this location match the official story?' 'How has this landscape changed over time?' 
+            As journalists, we face these questions daily.
+            But in today's digital world, answers often lie 
+            hidden in plain sight - in social media footage, 
+            satellite imagery, and countless other visual 
+            and spatial traces. While these materials traditionally 
+            served as illustrations for stories, they're 
+            now powerful sources of evidence themselves. 
+            Through mapping, OSINT techniques, and data 
+            analysis, digital breadcrumbs can be turned into 
+            investigative breakthroughs, transforming 
+            questions into revelations.
+        </p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-title">Data-driven Journalism</h3>
+                <p class="service-description">
+                    Collect and analyse large datasets
+                    using Python, Pandas, and web scrapping
+                    to create data-driven stories.
+                </p>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title">OSINT <br>Investigations</h3>
+                <p class="service-description">
+                    Use open-source intelligence gathering, geolocation, chronolocation, 
+                    social media platforms' data and visual verification for investigative projects. 
+                </p>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title">Mapping & Spatial Analysis</h3>
+                <p class="service-description">
+                    Analyse spatial data through satellite imagery 
+                    and mapping services 
+                    like QGIS, Mapbox GL JS to create a 
+                    comprehensive visual and spatial investigation.               </p>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title">Visual <br>Storytelling</h3>
+                <p class="service-description">
+                    Visualise your findings to help audiences with                  
+                    advanced visualization tools,
+                    static and interactive maps, charts, and 
+                    dashboards that tell compelling stories.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume-section fade-in">
+        <div class="resume-header-container">
+            <h2>Resume</h2>
+            <div class="cv-button-container">
+                <a href="your-cv.pdf" class="cv-download" download>
+                    Download Full CV (PDF)
+                </a>
+            </div>
+        </div>
+        <!-- Participations -->
+        <div class="resume-group">
+            <h3>Recent Participations</h3>
+            <div class="resume-item">
+                <div class="resume-date">November 2024, Berlin</div>
+                <div class="resume-org">Tactical Tech</div>
+                <a href="https://exposingtheinvisible.org/en/news/call-investigation-institute-2024/" class="resume-title" target="_blank">Exposing the Invisible: Digital Investigation Residency</a>
+            </div>
+            <div class="resume-item">
+                <div class="resume-date">October 2024 - February 2025</div>
+                <div class="resume-org">Magma Magazine</div>
+                <a href="https://www.magma-mag.net/magmatic-school-of-environmental-journalism-2/" class="resume-title" target="_blank">Magmatic School of Environmental Journalism</a>
+            </div>
+            <div class="resume-item">
+                <div class="resume-date">October 2024, Berlin</div>
+                <div class="resume-org">Berliner Gazette</div>
+                <a href="https://berlinergazette.de/projects/kin-city/" class="resume-title" target="_blank">Kin City: Festival on Urban Ecologies</a>
+               
+            </div>
+            <div class="resume-item">
+                <div class="resume-date">2024, Mechelen</div>
+                <div class="resume-org">Arena for Journalism in Europe</div>
+                <a href="https://dataharvest.eu/" class="resume-title" target="_blank">Dataharvest - European Investigative Journalism Conference</a>
+            </div>
+        </div>
+        
+        <div class="resume-grid">
+            <!-- Education Column -->
+            <div class="resume-group">
+                <h3>Education</h3>
+                <div class="resume-item">
+                    <div class="resume-date">2024</div>
+                    <div class="resume-org">Columbia University, New York</div>
+                    <div class="resume-title">Lede Program for Data Journalism</div>
+                    <div class="resume-note">iMEdD - SNF Data Journalism Fellowship</div>
+                </div>
+                <!-- [Other education items] -->
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">2024</div>
+                <div class="resume-org">Athens University of Economics and Business</div>
+                <div class="resume-title">Web Application Development</div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">2022 - 2023</div>
+                <div class="resume-org">Goldsmiths University of London</div>
+                <div class="resume-title">MA Research - Forensic Architecture</div>
+                <div class="resume-note">Eugenides Foundation National Architecture Scholarship</div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">2014 - 2020</div>
+                <div class="resume-org">National Technical University of Athens</div>
+                <div class="resume-title">MArch Architectural Engineering</div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">2014</div>
+                <div class="resume-org">LFHED | Lycée Franco-Hellénique Eugène Delacroix</div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Updated Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-section">
+            <div class="contact-category">
+                <h3>Direct Contact</h3>
+                <a href="mailto:dafni.karavola@gmail.com" class="contact-link">dafni.karavola@gmail.com</a>
+            </div>
+
+            <div class="contact-category">
+                <h3>Secure Communication</h3>
+                <a href="mailto:dafni.karavola@proton.me" class="contact-link">dafni.karavola@proton.me</a><br><br>
+                <p class="security-note">Signal upon request</p>
+                <p class="security-note">Please use the above <br>for sensitive information</p>
+            </div>
+
+            <div class="contact-category">
+                <h3>Networks</h3>
+                <a href="https://www.linkedin.com/in/dafni-karavola-125107210/" class="contact-link" target="_blank">LinkedIn</a><br>
+                <a href="https://x.com/dafnikaravola" class="contact-link" target="_blank">Twitter/X</a><br>
+                <a href="https://www.instagram.com/dafnikaravola/" class="contact-link" target="_blank">Instagram</a><br>
+                <a href="https://github.com/dafnikaravola" class="contact-link" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
 </html>
