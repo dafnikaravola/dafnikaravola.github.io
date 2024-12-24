@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PFAs-1</title>
+
+  <!-- Google fonts - Updated to include Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-size: 20px;
+      font-family: 'Poppins', sans-serif;
+      text-rendering: optimizeLegibility;
+      color: #9a5355;
+      /* #3d3d3d; */
+    }
+
+    .content {
+      max-width: 640px;
+      margin: auto;
+    }
+
+    .header {
+      padding: 3em 0;
+    }
+
+
+    iframe,
+    img,
+    video {
+      max-width: 100%;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0;
+      padding-bottom: 1.2em;
+    }
+
+    ul {
+      margin: 0;
+      padding-bottom: 1em;
+      line-height: 1.6;
+    }
+
+    iframe {
+      padding-bottom: 1.2em;
+    }
+
+    .full-width figure {
+      text-align: center;
+    }
+
+
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 18px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+  <div class="content">
+  </div>
+  <section id="scrolly-images" class="scrolly-container">
+    <div class="sticky-thing">
+      <img src="image1-desktop.png" alt="Scrolly image">
+    </div>
+    <div class="steps-container">
+      <div class="step" id="step1">
+        <div>
+          <p>Eighty years ago,  scientists did not know how to manufacture PFAS. Now, we cannot get rid of them.
+            <br><br>Almost every PFAS molecule ever synthesised is still out there. Some do break down –
+            but into new PFAS.
+            <br><br>These “Forever Chemicals” are in the soil, in raindrops, in our
+            food, in our blood. They can cause cancers, hormone and immune disruption, and much more.
+          </p>
+        </div>
+      </div>
+      <div class="step" id="step2">
+        <p>PFAS are man-made chemicals emitted into the environment from factories that produce or use them in
+          their industrial processes.
+          <br><br>They are discharged directly into water streams. PFAS pollution from
+          smokestacks ends up in the soil. Industrial waste containing PFAS is often landfilled.
+        </p>
+      </div>
+      <div class="step" id="step3">
+        <p> PFAS enter the human body through food, air, and skin.
+          <br><br>Some remain in our bodies and can damage our health. Some are expelled and end up in wastewater.
+        </p>
+      </div>
+      <div class="step" id="step4">
+        <p>Every fire ever extinguished using PFAS foams and every firefighting drill that has ever sprayed 
+          these foams have released PFAS into the environment.
+          <br><br>They are still there.
+          <br><br>These chemicals hide in soil and buildings, their contamination gradually affecting
+          surrounding waters, ecosystems, and human populations.
+        </p>
+      </div>
+      <div class="step" id="step5">
+        <p> Many everyday products contain PFAS. Waste eventually decomposes, but the PFAS do not.
+          <br><br>They leach out of landfills to pollute groundwater and rivers. Gasses emitted by landfills also
+          contain PFAS.
+        </p>
+      </div>
+      <div class="step" id="step6">
+        <p>To this day, in many parts of Europe, PFAS are spread directly onto fields in at least four ways:
+          <br><br>1. Pesticides with PFAS are sprayed onto crops.
+          <br><br>2. Sewage sludge not checked for PFAS is used as fertiliser.
+          <br><br>3. Reclaimed water from wastewater treatment plants not checked for PFAS is used for irrigation.
+          <br><br>4. Tiny droplets containing PFAS are suspended in the air and come down as rain.
+          <!-- <img src="irrigation.png">
+          <caption>Europe irrigation map</caption> -->
+        </p>
+      </div>
+      <div class="step" id="step7">
+        <p>The chemical industry has known about PFAS hazards for seven decades.
+          <br><br>When it started facing
+          legal and regulatory threats and could no longer hold on to the first generation of PFAS,
+          it created smaller PFAS that are just as indestructible and even more mobile.
+          <br><br>They are now found everywhere, especially in plants and water – and they accumulate fast. This is
+          called a regrettable substitution.
+        </p>
+      </div>
+      <div class="step" id="step8">
+        <p>No wonder PFAS end up on our plate
+        </p>
+      </div>
+      <div class="step" id="step9">
+        <p>in rising concentrations
+        </p>
+      </div>
+      <div class="step" id="step10">
+        <p> that will continue rising unless PFAS production stops
+        </p>
+      </div>
+      <div class="step" id="step11">
+        <p><b>Getting rid of legacy PFAS</b><br>
+          <span class="highlight-red"><b>Cost: between 3 and 16 billion euros </span></b>
+          <br><br>The journalists of the Forever Lobbying Project teamed up with scientists to calculate
+          the financial cost of bringing the PFAS crisis under control.
+          <br><br> They started with legacy PFAS, big “long-chain” molecules that are restricted or banned
+          but remain in the environment.
+          <br><br>For decades, these chemicals were used to make non-stick pans,
+          single-use food packaging, and stain-resistant textiles. Experts call them the EFSA 4:
+          PFOS, PFOA, PFNA, PFHxS.
+        </p>
+      </div>
+      <div class="step" id="step12">
+        <p>Cleaning up the most concentrated sources of long-chain PFAS in Europe would cost anywhere<br>
+          between <span class="highlight-red"><b>3 and 16 billion euros </span></b> <br>in the next 20 years.
+          <br><br>Our societies — or, in rare cases, the polluters — must face these financial costs
+          even if PFAS use stops immediately.
+          <br><br>If we continue emitting, the bill will multiply.
+        </p>
+      </div>
+      <div class="step" id="step13">
+        <p><b> Getting rid of all PFAS</b><br>
+          <span class="highlight-red"><b>Cost: 2 trillion euros over 20 years</span></b>
+          <br><br>Short-chain and ultrashort-chain PFAS, like TFA, are extremely mobile and can very easily enter the
+          cells of living creatures.
+          <br><br>Those molecules are so small they bypass most water filters.
+          <br><br>It would cost around <span class="highlight-red"><b>100 billion euros every year</span></b> to remove
+          short-chain and ultrashort-chain PFAS,
+          even partially, from the environment and to destroy them. That’s more than two trillion over 20 years.
+        </p>
+      </div>
+      <div class="step" id="step14">
+        <p>We cannot remove PFAS from human blood, sea foam or rain. But there is still a lot that can be done.
+          <br><br>If the EU acts now, we can prevent concentrations of emerging PFAS like TFA from reaching harmful levels in our drinking water. 
+          <br><br>An alliance of forever polluters claim that only the previous generation of PFAS is problematic.
+          These polluters are orchestrating an <a href="https://foreverpollution.eu/lobbying/disinformation">EU-wide
+            lobbying and disinformation campaign</a> to derail the proposed European ban on PFAS.
+          <br><br>If they are successful, we will all be the subjects of a gigantic, irreversible experiment on a
+          planetary scale.
+        </p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.jpg`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.6,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+      // Initialize first image on page load
+      updateImage(0);  // Add this line to load the first image immediately
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+      // Set up D3 event listeners
+      for (let i = 1; i <= 5; i++) {
+        d3.select(`#step${i}`).on('stepin', (e) => {
+          updateImage(i - 1);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 50vh;
+    }
+  </style>
+
+</body>
+
+</html>
