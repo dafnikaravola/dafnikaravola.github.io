@@ -35,7 +35,7 @@ body, html {
     width: 100%;
     height: auto;
     max-height: 100vh;
-    object-fit:cover; 
+    object-fit:fill; 
 }
 
 @media screen and (max-width: 768px) {
@@ -88,7 +88,7 @@ body, html {
     
     .step > * {
         width: 90%;
-        padding: 1.5em !important;
+        padding: 0.5em 0.5em 0.5em 1.5em !important;  /* top right bottom left */
         margin: 0 auto;
     }
 }
@@ -115,7 +115,7 @@ body, html {
     width: 80%;
     max-width: 600px;
     text-align: left; 
-    padding: 3em !important;
+    padding: 0.5em 0.5em 0.5em 3em !important;  /* top right bottom left */
     /* background-color: rgba(255, 255, 255, 0.094); */
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Adding subtle drop shadow */
     backdrop-filter: blur(4px);  
@@ -154,6 +154,47 @@ body, html {
 
 .credits{
     font-size: 16px;
+}
+
+.steptitle{
+    font-size: 24px;
+}
+
+.costtitle{
+    font-size: 24px;
+    color: #d61d23;
+}
+
+.cost{
+    font-size: 24px;
+    color: #d61d23;
+}
+
+/* Add this media query for mobile font sizes */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 35px;  /* Reduced from 52px */
+    }
+    
+    .subtitle {
+        font-size: 21px;  /* Reduced from 32px */
+    }
+    
+    .credits {
+        font-size: 12px;  /* Reduced from 16px */
+    }
+    
+    .steptitle {
+        font-size: 16px;  /* Reduced from 24px */
+    }
+    
+    .costtitle {
+        font-size: 16px;  /* Reduced from 24px */
+    }
+    
+    .cost {
+        font-size: 16px;  /* Reduced from 24px */
+    }
 }
 
 /* Add these new rules */
