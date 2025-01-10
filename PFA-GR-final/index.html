@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PFAS-EN</title>
+
+  <!-- Google fonts - Updated to include Poppins -->
+  <!-- Google fonts - Updated to include Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> -->
+  <style>
+     
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 14px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+
+    <section id="scrolly-images" class="scrolly-container">
+      <div class="sticky-thing">
+        <img src="image1-desktop.webp" alt="Scrolly image">
+      </div>
+      <div class="steps-container">
+        <div class="step" id="step1">
+          <p><span class="title"><b>XXXXXXXXXX</b></span> <br>
+            <span class="subtitle">XXXXXXXXXXXXXXXXXXXX</span><br>
+            <span class="credits">
+              <br> Εκτίμηση κόστους: <br>Ali Ling / Πανεπιστήμιο St. Thomas, Σχολή Μηχανικών, ΗΠΑ<br>
+              Hans Peter Arp / Νορβηγικό Πανεπιστήμιο Επιστήμης και Τεχνολογίας - <br>Νορβηγικό Γεωτεχνικό Ινστιτούτο<br>
+              Raphaëlle Aubert / Le Monde <br>
+              Ευρυδίκη Μπερσή / Reporters United<br><br>
+              Κείμενο: Ευρυδίκη Μπερσή / Reporters United<br>
+              Εικονογράφιση: Τζωρτζίνα Χολέβα / Spoovio<br>
+              Ψηφιακός σχεδιασμός: Δάφνη Καράβολα / Reporters United
+            </span>
+          </p>
+        </div>
+        <div class="step" id="step2">
+          <div>
+            <p>Πριν από ογδόντα χρόνια οι επιστήμονες δεν γνώριζαν πώς παρασκευάζονται τα  PFAS. Τώρα κανείς δεν ξέρει πώς μπορούμε να απαλλαγούμε από αυτά.
+              <br><br>Σχεδόν κάθε μόριο PFAS που έχει συντεθεί ποτέ υπάρχει ακόμα. Ακόμη κι αυτά που έχουν διασπαστεί, έχουν μετατραπεί σε άλλα PFAS.
+              <br><br>Τα αιώνια χημικά βρίσκονται στο έδαφος, στις σταγόνες της βροχής, στα τρόφιμα, στο αίμα μας. Μπορούν να προκαλέσουν καρκίνους, διαταραχές στο ορμονικό και ανοσοποιητικό σύστημα και πολλά άλλα. 
+            </p>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <p>Τα PFAS εκπέμπονται στο περιβάλλον από τα εργοστάσια που τα παράγουν ή από αυτά που τα χρησιμοποιούν στην παραγωγική τους διαδικασία.
+            <br><br>Υγρά απόβλητα που περιέχουν PFAS απορρίπτονται απευθείας σε ποτάμια, λίμνες και θάλασσες. <br><br>PFAS σε αέρια μορφή εκπέμπονται από τις καμινάδες των εργοστασίων και επικάθονται στο έδαφος. Βιομηχανικά και άλλα στερεά 
+            απόβλητα που περιέχουν PFAS συχνά καταλήγουν σε χώρους υγειονομικής ταφής.
+          </p>
+        </div>
+        <div class="step" id="step4">
+          <p>Τα PFAS εισέρχονται στον ανθρώπινο οργανισμό μέσω της τροφής, της εισπνοής ή της επαφής με το δέρμα.
+            <br><br>Ορισμένα παραμένουν στο σώμα μας και μπορούν να βλάψουν την υγεία μας. Κάποια αποβάλλονται και καταλήγουν στα λύματα.
+          </p>
+        </div>
+        <div class="step" id="step5">
+          <p>Κάθε πυρκαγιά που κατασβέστηκε ποτέ με τη χρήση αφρών PFAS, κάθε άσκηση πυρόσβεσης που έγινε ποτέ χρησιμοποιώντας αυτούς τους αφρούς έχει απελευθερώσει PFAS στο περιβάλλον.
+            <br><br> Είναι όλα εκεί. Ακόμα.
+            <br><br>Εχουν απορροφηθεί από το έδαφος και από τα κτίρια και εκλύονται επηρεάζοντας νερό, οικοσυστήματα και ανθρώπους. 
+          </p>
+        </div>
+        <div class="step" id="step6">
+          <p>Πολλά προϊόντα καθημερινής χρήσης περιέχουν PFAS. Τα σκουπίδια μας κάποια στιγμή θα αποσυντεθούν, τα PFAS μέσα σε αυτά, όμως, όχι.
+            <br><br>Υγρά στραγγίσματα από τους χώρους υγειονομικής ταφής απορριμμάτων μολύνουν με PFAS υπόγεια ύδατα και ποτάμια. Τα αέρια που εκλύονται από τους χώρους υγειονομικής ταφής επίσης περιέχουν PFAS.
+          </p>
+        </div>
+        <div class="step" id="step7">
+          <p>Ακόμα και σήμερα διασπείρουμε PFAS απευθείας στις καλλιέργειες με τουλάχιστον τέσσερις τρόπους:
+            <br><br>1. Φυτοφάρμακα που περιέχουν PFAS χρησιμοποιούνται ακόμα.
+            <br><br>2. Λυματολάσπη που δεν έχει ελεγχθεί ως προς την περιεκτικότητά της σε PFAS χρησιμοποιείται ως λίπασμα.
+            <br><br>3. "Ανακτημένα ύδατα", δηλαδή νερό από τις εξόδους των βιολογικών καθαρισμών που δεν έχει ελεγχθεί ως προς την περιεκτικότητά του σε PFAS χρησιμοποιείται για άρδευση.
+            <br><br>4. Σταγονίδια που περιέχουν PFAS αιωρούνται στην ατμόσφαιρα και πέφτουν στο έδαφος με τη βροχή.
+          </p>
+        </div>
+        <div class="step" id="step8">
+          <p>Η χημική βιομηχανία γνωρίζει τους κινδύνους των PFAS εδώ και επτά δεκαετίες.
+            <br><br>Όταν τα νομικά προβλήματα και οι απαγορεύσεις την υποχρέωσαν να εγκαταλείψει την πρώτη γενιά PFAS, δημιούργησε 
+            <span class="highlight-red">νέα, μικρότερα PFAS.</span> 
+            Αυτά είναι εξίσου αδύνατο να καταστραφούν όπως και τα προηγούμενα, αλλά κινούνται πολύ περισσότερο. Ανιχνεύονται πλέον παντού, ιδίως στα φυτά και το νερό - και συσσωρεύονται γρήγορα. Ήταν μια άστοχη αντικατάσταση. 
+          </p>
+        </div>
+        <div class="step" id="step9">
+          <div>
+            <p>Καθόλου περίεργο που τα PFAS καταλήγουν στο πιάτο μας, σε αυξανόμενες συγκεντρώσεις,
+              που θα συνεχίσουν να αυξάνονται, εκτός αν σταματήσει η παραγωγή PFAS.</p>
+            <img src="image10-desktop-plate.png" alt="Πιάτο φαγητού γεμάτο PFAS">
+          </div>
+        </div>
+       
+        <div class="step" id="step10">
+          <p><span class="steptitle"><b>Πώς θα απαλλαγούμε από την προηγούμενη γενιά PFAS</b></span><br>
+            <span class="costtitle"><b>€95 δισ. σε 20 χρόνια</span></b>
+            <br><br>Στο Forever Lobbying Project, δημοσιογράφοι και επιστήμονες συνεργάστηκαν για να υπολογίσουν πόσο θα κοστίσει το να τεθεί υπό έλεγχο η κρίση των PFAS.
+            <br><br>Ασχολήθηκαν αρχικά με τα πρώτα PFAS, τα μόρια «μακράς αλυσίδας» που έχουν ήδη απαγορευθεί αλλά παραμένουν στο περιβάλλον.
+            <br><br>Οι ουσίες αυτές χρησιμοποιούνταν επί δεκαετίες σε αντικολλητικά τηγάνια, συσκευασίες τροφίμων μιας χρήσης και υφάσματα ανθεκτικά στους λεκέδες. Είναι τα λεγόμενα "4 PFAS της EFSA":
+            PFOS, PFOA, PFNA, PFHxS.
+          </p>
+        </div>
+        <div class="step" id="step11">
+          <p>Η αφαίρεση των PFAS από τα πιο επιβαρυμένα σημεία στην Ευρώπη θα κοστίσει
+             <span class="cost"><b>€4.8 δισ. κάθε χρόνο.</span></b>
+            <br><br>Αυτό το κόστος θα βαρύνει τους δημόσιους προϋπολογισμούς της Ευρώπης - ή σε σπάνιες περιπτώσεις, τις βιομηχανίες και τους άλλους υπεύθυνους για τη ρύπανση-  ακόμη και αν η χρήση όλων των PFAS σταματήσει αμέσως. 
+            <br><br>Αν οι εκπομπές συνεχιστούν, ο λογαριασμός αυξάνεται εκθετικά.
+          </p>
+        </div>
+        <div class="step" id="step12">
+          <p><span class="steptitle"><b>Πώς θα απαλλαγούμε από όλα τα PFAS</b></span><br>
+            <span class="costtitle"><b>€2 τρισ. σε 20 χρόνια</span></b>
+            <br><br>Τα PFAS μικρής και πολύ μικρής αλυσίδας, όπως το TFA, είναι εξαιρετικά κινητικά στο περιβάλλον και μπορούν πολύ εύκολα να εισέλθουν στα κύτταρα των ζωντανών οργανισμών.
+            <br><br>Τα περισσότερα φίλτρα νερού δεν συγκρατούν τόσο μικρά μόρια. 
+            <br><br>Προκειμένου να απομακρύνουμε ένα μέρος από αυτά τα  PFAS από το περιβάλλον και να τα καταστρέψουμε απαιτούνται τουλάχιστον 
+            <span class="cost"><b>€100 δισ το χρόνο.</span></b>
+            Αυτό είναι περισσότερα από <b>€ 2.000.000.000.000 </b> στη διάρκεια 20 ετών. 
+          </p>
+        </div>
+        <div class="step" id="step13">
+          <p>Είναι αδύνατο να  αφαιρεθούν τα PFAS από το ανθρώπινο αίμα, από τον αφρό της θάλασσας ή από τη βροχή.  Αλλά πολλά μπορούν να γίνουν.
+            <br><br>Εάν η ΕΕ ενεργήσει τώρα, μπορούμε να αποφύγουμε το να φθάσουν οι συγκεντρώσεις αναδυόμενων PFAS, όπως το TFA, σε επιβλαβή επίπεδα στο πόσιμο νερό.
+            <br><br>Πολλοί από τους υπεύθυνους γι αυτή τη ρύπανση ακόμα ισχυρίζονται ότι μόνο η προηγούμενη γενιά  PFAS είναι προβληματική. Μια 
+            <a href="https://foreverpollution.eu/lobbying/the-disinformation-campaign">εκστρατεία πίεσης και παραπληροφόρησης</a> 
+            επιχειρεί να εκτροχιάσει την προτεινόμενη ευρωπαϊκή απαγόρευση των PFAS.
+            <br><br>Εάν επιτύχει, θα συνεχίσουμε να πρωταγωνιστούμε σε ένα γιγαντιαίο, μη αναστρέψιμο πείραμα πλανητικών διαστάσεων.
+          </p>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.webp`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.75,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+      // Initialize first image on page load
+      updateImage(0);  // Add this line to load the first image immediately
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+      // Set up D3 event listeners
+      for (let i = 1; i <= 5; i++) {
+        d3.select(`#step${i}`).on('stepin', (e) => {
+          updateImage(i - 1);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 60vh;
+    }
+  </style>
+
+</body>
+
+</html>
