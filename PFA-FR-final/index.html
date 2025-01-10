@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PFAS-FR</title>
+
+  <!-- Google fonts - Updated to include Poppins -->
+  <!-- Google fonts - Updated to include Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> -->
+  <style>
+     
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 14px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+
+    <section id="scrolly-images" class="scrolly-container">
+      <div class="sticky-thing">
+        <img src="image1-desktop.webp" alt="Scrolly image">
+      </div>
+      <div class="steps-container">
+        <div class="step" id="step1">
+          <p><span class="title"><b>Hors de prix</b></span> <br>
+            <span class="subtitle">Le coût absurde du "PFAS as usual"</span><br>
+            <span class="credits">
+              <br>Estimation des coûts : <br>Ali Ling / University of St. Thomas, School of Engineering, États-Unis<br>
+              Hans Peter Arp / Université norvégienne des sciences et technologies - <br>Institut géotechnique norvégien<br>
+              Raphaëlle Aubert / Le Monde <br>
+              Eurydice Bersi / Reporters United<br><br>
+              Texte: Eurydice Bersi / Reporters United<br>
+              Illustration: Georgina Choleva / Spoovio<br>
+              Conception du site web: Dafni Karavola / Reporters United<br><br> 
+              Traduction en français : Romane Bonnemé
+            </span>
+          </p>
+        </div>
+        <div class="step" id="step2">
+          <div>
+            <p>Il y a 80 ans, les scientifiques ne savaient pas comment fabriquer des PFAS. Aujourd'hui, nous ne pouvons pas nous en débarrasser.
+              <br><br>Presque toutes les molécules de PFAS jamais synthétisées sont encore dans la nature. Certaines d'entre elles se décomposent pour donner naissance à de nouveaux PFAS.
+              <br><br>Ces "polluants éternels" sont présents dans le sol, dans les gouttes de pluie, dans notre alimentation, dans notre sang. Ils peuvent notamment provoquer des cancers ou des perturbations hormonales et immunitaires.
+            </p>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <p>Les PFAS sont des substances chimiques artificielles émises dans l'environnement par les usines qui les produisent ou les utilisent dans leurs processus industriels.
+            <br><br> Ils sont directement déversés dans les cours d'eau. <br><br>La pollution par les PFAS rejetée des cheminées retombe sur le sol. <br><br>Les déchets industriels contenant des PFAS sont souvent mis en décharge.
+          </p>
+        </div>
+        <div class="step" id="step4">
+          <p> Les PFAS pénètrent dans le corps humain par la nourriture, l'air ou la peau. Certains restent dans l'organisme et peuvent nuire à la santé. D'autres sont éliminés et se retrouvent dans les eaux usées.
+          </p>
+        </div>
+        <div class="step" id="step5">
+          <p>Chaque incendie éteint avec des mousses extinctives chargées en PFAS a contribué à polluer l'environnement.
+            <br><br>Ces substances sont toujours présentes dans les sols et les bâtiments où ces mousses ont été utilisées contaminant les eaux environnantes, les écosystèmes et les populations humaines.
+          </p>
+        </div>
+        <div class="step" id="step6">
+          <p> De nombreux produits de la vie courante contiennent des PFAS. Les déchets finissent par se décomposer, mais pas les PFAS.
+            <br><br>Ils s'échappent des décharges sous forme de gaz ou polluent les eaux souterraines et les rivières.
+          </p>
+        </div>
+        <div class="step" id="step7">
+          <p> Aujourd'hui encore, dans de nombreuses régions d'Europe, les PFAS sont directement répandus dans les champs d'au moins quatre manières: 
+            <br><br>1. Des pesticides contenant des PFAS sont pulvérisés sur les cultures. 
+            <br><br>2. Des boues d'épuration dont la teneur en PFAS n'a pas été vérifiée sont utilisées comme engrais.
+            <br><br>3. L'eau recyclée provenant de stations d'épuration des eaux usées dont la présence de PFAS n'a pas été vérifiée est utilisée pour l'irrigation.
+            <br><br>4. De minuscules gouttelettes contenant des PFAS sont suspendues dans l'air et retombent sous forme de pluie.
+          </p>
+        </div>
+        <div class="step" id="step8">
+          <p>L'industrie chimique connaît les dangers des PFAS depuis sept décennies.
+            <br><br>Lorsqu'elle a dû faire face à des menaces juridiques et réglementaires et qu'elle ne pouvait plus continuer à fabriquer ou utiliser la première génération de PFAS, elle a créé des 
+            <span class="highlight-red"> PFAS plus petits</span> qui sont tout aussi indestructibles et encore plus mobiles.
+            <br><br>On les trouve désormais partout, en particulier dans les végétaux et l'eau, et ils s'accumulent rapidement. C'est ce qu'on appelle une "substitution regrettable". 
+          </p>
+        </div>
+        <div class="step" id="step9">
+          <div>
+            <p>Pas étonnant que les PFAS se retrouvent dans notre assiette à des niveaux croisants, qui continueront d'augmenter si la production de PFAS ne s'arrête pas. </p>
+            <img src="image10-desktop-plate.png" alt="Plate illustration">
+          </div>
+        </div>
+       
+        <div class="step" id="step10">
+          <p><span class="steptitle"><b>Se débarrasser des anciens PFAS</b></span><br>
+            <span class="costtitle"><b>€95 milliards sur 20 ans</span></b>
+            <br><br>Les journalistes du Forever Lobbying Project ont fait équipe avec des scientifiques pour calculer combien coûterait la gestion de la crise des PFAS.
+            <br><br> Ils ont commencé par les anciens PFAS, de grosses molécules à « longue chaîne » qui sont limitées ou interdites mais qui restent dans l'environnement. 
+            <br><br>Ces produits chimiques ont été utilisés pendant des décennies pour fabriquer des poêles antiadhésives, des emballages alimentaires à usage unique et des textiles antitaches. Les experts les appellent les 4 EFSA :
+            PFOS, PFOA, PFNA, PFHxS. 
+          </p>
+        </div>
+        <div class="step" id="step11">
+          <p>L'assainissement des sources les plus chargées de PFAS à longue chaîne en Europe coûterait    
+            <span class="cost"><b>€4.8 milliards par an.</span></b>
+            <br><br>Nos sociétés - ou, dans de rares cas, les pollueurs - sont confrontées à ces coûts même si l'utilisation des PFAS cesse immédiatement.
+            <br><br>Si nous continuons à émettre, les coûts se multiplient.
+          </p>
+        </div>
+        <div class="step" id="step12">
+          <p><span class="steptitle"><b>Se débarrasser de tous les PFAS</b></span><br>
+            <span class="costtitle"><b>€2.000 milliards sur 20 ans</span></b>
+            <br><br>Les PFAS à chaîne courte et à chaîne ultra-courte, comme le TFA, sont extrêmement mobiles. Ils peuvent très facilement pénétrer dans les cellules des organismes vivants.
+            <br><br>Ces molécules sont trop petites pour la plupart des filtres à eau. 
+            <br><br>Il en coûterait environ <span class="cost"><b>€100 milliards d'euros par an</span></b> 
+             pour éliminer, même partiellement, les PFAS à chaîne courte et à chaîne ultra-courte de l'environnement et pour les détruire. Cela représente plus de deux mille milliards d'euros sur 20 ans. 
+            <br><br>Cela représente <b>€2.000.000.000.000</b>
+          </p>
+        </div>
+        <div class="step" id="step13">
+          <p>Nous ne pouvons pas éliminer les PFAS du sang humain, de l'écume de mer ou de la pluie. Mais il y a encore beaucoup à faire.
+            <br><br>Si l'UE agit maintenant, les concentrations de nouveaux PFAS comme le TFA pourraient cesser d'augmenter avant d'atteindre des niveaux nocifs dans l'eau potable. 
+            <br><br>Cependant, une alliance d'éternels pollueurs prétend que seule la génération précédente de PFAS posait problème. 
+            Ils orchestrent une <a href="https://foreverpollution.eu/lobbying/lobbying-disinformation/">campagne de lobbying et de désinformation</a> 
+            à l'échelle de l'Union européenne pour faire échouer une proposition d'interdiction européenne des PFAS. 
+            <br><br>S'ils réussissent, nous serons tous les cobayes d'une expérience gigantesque et irréversible à l'échelle planétaire.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.webp`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.75,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+      // Initialize first image on page load
+      updateImage(0);  // Add this line to load the first image immediately
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+      // Set up D3 event listeners
+      for (let i = 1; i <= 5; i++) {
+        d3.select(`#step${i}`).on('stepin', (e) => {
+          updateImage(i - 1);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 60vh;
+    }
+  </style>
+
+</body>
+
+</html>
