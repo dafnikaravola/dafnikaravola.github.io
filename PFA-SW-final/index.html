@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PFAs-SW</title>
+
+  <!-- Google fonts - Updated to include Poppins -->
+  <!-- Google fonts - Updated to include Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> -->
+  <style>
+     
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 14px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+
+    <section id="scrolly-images" class="scrolly-container">
+      <div class="sticky-thing">
+        <img src="image1-desktop.webp" alt="Scrolly image">
+      </div>
+      <div class="steps-container">
+        <div class="step" id="step1">
+          <p><span class="title"><b>Som att rena havet<br> från salt</b></span> <br>
+            <span class="subtitle">Den absurda kostnaden för "PFAS as usual"</span><br>
+            <span class="credits">
+              <br>Kostnadsuppskattningar:<br>Ali Ling / University of St. Thomas, School of Engineering, USA<br>
+              Hans Peter Arp / Norges teknisk-naturvetenskapliga universitet - <br> Norges geotekniska institut<br>
+              Raphaëlle Aubert / Le Monde <br>
+              Eurydice Bersi / Reporters United<br><br>
+              Text: Eurydice Bersi / Reporters United<br>
+              Illustration: Georgina Choleva / Spoovio<br>
+              Webbdesign: Dafni Karavola / Reporters United <br><br>
+              Översättning till svenska: Aleksandra Pogorzelska
+            </span>
+          </p>
+        </div>
+        <div class="step" id="step2">
+          <div>
+            <p>För 80 år sedan visste inte forskarna hur PFAS tillverkas. Nu kan världen inte bli av med dem.
+              <br><br>Nästan varje PFAS-molekyl som någonsin tillverkats finns fortfarande där ute. De som har fallit sönder har bildat nya PFAS. 
+              <br><br>Evighetskemikalierna finns i jorden, i regndroppar, i vår mat, i vårt blod. De kan orsaka cancer, hormon- och immunstörningar och mycket mer.
+            </p>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <p>PFAS är konstgjorda kemikalier som släpps ut i miljön från fabriker som tillverkar eller använder dem i sina industriella processer.
+            <br><br>De släpps ut direkt i vattenströmmar och via skorstenar i rök som regnar ned över mark. <br><br> Avfall som innehåller PFAS läggs ofta på hög.
+          </p>
+        </div>
+        <div class="step" id="step4">
+          <p>PFAS tränger sig in i människokroppen genom mat, luft och hud.
+            <br><br>Vissa ansamlas och kan skada vår hälsa. En del utsöndras och hamnar i avloppsvatten.
+          </p>
+        </div>
+        <div class="step" id="step5">
+          <p>Varje brand som någonsin släckts med PFAS-haltigt skum har släppt ut evighetskemikalierna i miljön.
+            <br><br>Där finns de fortfarande kvar.
+            <br><br>Kemikalierna gömmer sig i mark och byggnader, där de påverkar omgivande vatten, ekosystem och människor.
+          </p>
+        </div>
+        <div class="step" id="step6">
+          <p>Många konsumentvaror innehåller PFAS. Sopor sönderfaller med tiden, men PFAS gör det inte.
+            <br><br>De läcker ut från avfallsdeponier och förorenar grundvatten och floder. Gaser som släpps ut från deponier innehåller också PFAS.
+          </p>
+        </div>
+        <div class="step" id="step7">
+          <p>Än idag sprids PFAS i många delar av Europa direkt på fält på minst fyra sätt:
+            <br><br>1. Bekämpningsmedel med PFAS sprutas på grödor.
+            <br><br>2. Avloppsslam som inte är kontrollerat för PFAS används som gödningsmedel.
+            <br><br>3. Återvunnet vatten från avloppsreningsverk som inte kontrollerats för PFAS används för bevattning.
+            <br><br>4. Små droppar som innehåller PFAS svävar i luften och faller som regn.
+          </p>
+        </div>
+        <div class="step" id="step8">
+          <p>Kemikalieindustrin har känt till riskerna med PFAS i sju decennier.
+            <br><br>När den första generationen PFAS stötte på patrull – som hot om rättstvister och förbud – svarade tillverkarna med att ta fram 
+            <span class="highlight-red">mindre PFAS</span> 
+            som är lika oförstörbara och ännu mer rörliga. De finns nu överallt, särskilt i växter och vatten – och de ackumuleras snabbt. Att byta till ämnen som är minst lika farliga och hälsoskadliga kallas "falsk substitution". 
+          </p>
+        </div>
+        <div class="step" id="step9">
+          <div>
+            <p>Det är inte förvånande att PFAS hamnar på vår tallrik, i allt högre halter, som kommer att fortsätta stiga om inte tillverkningen av PFAS stoppas.</p>
+            <img src="image10-desktop-plate.png" alt="Plate illustration">
+          </div>
+        </div>
+       
+        <div class="step" id="step10">
+          <p><span class="steptitle"><b>Att bli av med äldre PFAS</b></span><br>
+            <span class="costtitle"><b>Kostnad: mellan 23 till 160 miljarder kronor</span></b>
+            <br><br>Journalisterna från Forever Lobbying Project har tillsammans med forskare räknat på den ekonomiska kostnaden för att få PFAS-krisen under kontroll.
+            <br><br>De började med äldre PFAS, stora ”långkedjiga” molekyler som vars användning är begränsad eller förbjuden men som förblir i miljön.
+            <br><br> I årtionden har dessa kemikalier använts för att tillverka stekpannor med non-stickbeläggning, livsmedelsförpackningar för engångsbruk och fläckbeständiga textilier. Experter kallar dem för PFAS 4: 
+            PFOS, PFOA, PFNA, PFHxS.
+          </p>
+        </div>
+        <div class="step" id="step11">
+          <p>Att städa upp de platser som är mest förorenade av långkedjiga PFAS i Europa skulle kosta  
+            <span class="cost"><b>allt mellan 35 till 185 miljarder kronor</span></b> under de kommande 20 åren.
+            <br><br>Våra samhällen – bara i sällsynta fall förorenarna – måste betala dessa kostnader även om användningen av PFAS upphör omedelbart.
+            <br><br>Om vi ​​fortsätter att släppa ut evighetskemikalier kommer notan att mångdubblas.
+          </p>
+        </div>
+        <div class="step" id="step12">
+          <p><span class="steptitle"><b>Att bli kvitt alla PFAS</b></span><br>
+            <span class="costtitle"><b>Kostnad: 23 biljoner kronor under 20 år</span></b>
+            <br><br>Kortkedjiga och ultrakortkedjiga PFAS, liksom TFA, är extremt rörliga och kan mycket lätt tränga in i cellerna hos levande varelser.
+            <br><br>Dessa molekyler är så små att de passerar de flesta vattenfilter utan att stoppas
+            <br><br> Det skulle kosta omkring
+            <span class="cost"><b>1.150 miljarder kronor varje år att</span></b> avlägsna kortkedjiga och ultrakortkedjiga PFAS, även delvis, från miljön och förstöra dem.
+            Det är mer 23 biljoner kronor under 20 år.<br><br>
+            <b>Det är 23 000 000 000 000 kronor.</b>
+          </p>
+        </div>
+        <div class="step" id="step13">
+          <p> Vi kan inte avlägsna PFAS från mänskligt blod, havsskum eller regn. Men det finns mycket som kan göras.
+            <br><br>Om EU agerar nu kan vi förhindra att halterna TFA och andra PFAS i vårt dricksvatten når skadliga nivåer. 
+            <br><br>En allians av evighetsförorenare hävdar att endast den tidigare generationen av PFAS är problematisk. De står bakom en omfattande
+            <a href="https://foreverpollution.eu/lobbying/lobbying-disinformation/">lobby- och desinformationskampanj</a> 
+            för att slå ut tänderna på det förbud mot PFAS som ligger på bordet.
+            <br><br>Om de lyckas kommer vi alla att bli föremål för ett gigantiskt, oåterkalleligt experiment i planetär skala.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.webp`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.75,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+      // Initialize first image on page load
+      updateImage(0);  // Add this line to load the first image immediately
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+      // Set up D3 event listeners
+      for (let i = 1; i <= 5; i++) {
+        d3.select(`#step${i}`).on('stepin', (e) => {
+          updateImage(i - 1);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 60vh;
+    }
+  </style>
+
+</body>
+
+</html>
