@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natura-Costa-Navarino-RU</title>
+
+  <!-- Google fonts - Updated to include Poppins -->
+  <!-- Google fonts - Updated to include Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> -->
+  <style>
+     
+    /* margin on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 14px;
+      }
+
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
+
+<body>
+
+    <section id="scrolly-images" class="scrolly-container">
+      <div class="sticky-thing">
+        <img src="image1-desktop.webp" alt="Scrolly image">
+      </div>
+      <div class="steps-container">
+        <div class="step" id="step1">
+          <p>Τα δύο πρώτα ξενοδοχεία του Costa Navarino The Romanos Resort και The Westin Resort Costa Navarino στην ΠΟΤΑ Ρωμανού (Περιοχή Ολοκληρωμένης Τουριστικής Ανάπτυξης) ξεκίνησαν να λειτουργούν το 2010.
+          </p>
+        </div>
+        <div class="step" id="step2">
+          <div>
+            <p>To 2012, το <span class="natura">37% (36,76%) της ΠΟΤΑ</span> βρισκόταν 
+              εντός της Natura 2000 (με κωδικό GR2550004).
+            </p>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <p>Το 2017, το υπουργείο Περιβάλλοντος (ΥΠΕΝ) τροποποίησε το όριο όλης της Natura GR2550004. Από την ΠΟΤΑ Ρωμανού, συγκεκριμένα, <span class="natura-red">αφαίρεσε σχεδόν 219 (218,79) στρέμματα,</span> έβγαλε εκτός Natura τα δύο ξενοδοχεία και προσάρμοσε το όριό της στα όρια της ΠΟΤΑ. Πλέον μόνο το <span class="natura">20% (19,96%) της ΠΟΤΑ βρίσκεται εντός Natura.</span> 
+          </p>
+        </div>
+        <div class="step" id="step4">
+          <p><span class="subtitle" >Γιατί αφαιρέθηκε αυτή η έκταση;</span><br> Ρωτήσαμε το υπουργείο. Μας απάντησε ότι η «διαφορά εμβαδού» οφείλεται «στην προσαρμογή του παλαιότερου ορίου <span class="justif"> στα όρια της κεντρικής οδού Πύλου-Γαργαλιάνου» και «στα όρια της ακτογραμμής»,</span> δικαιολογώντας έτσι μόνο ένα τμήμα των περικοπών.
+          </p>
+        </div>
+        <div class="step" id="step5">
+          <p>Καμία εξήγηση δεν δόθηκε για τα <span class="natura-red">219 στρέμματα των ξενοδοχείων</span> The Romanos Resort και The Westin Resort Costa Navarino και του γκολφ Navarino Dunes που κόπηκαν από την Natura του Ρωμανού. Και όμως, σχεδόν η μισή από την περιοχή Natura εντός της ΠΟΤΑ Ρωμανού έχει αφαιρεθεί.
+          </p>
+        </div>
+      
+      </div>
+    </section>
+
+
+  <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+      const steps = document.querySelectorAll('.step');
+      const stickyImage = document.querySelector('.sticky-thing img');
+      let isMobile = window.innerWidth <= 768;
+
+      function updateImage(index) {
+        const suffix = isMobile ? '-mobile' : '-desktop';
+        stickyImage.src = `image${index + 1}${suffix}.webp`;
+      }
+
+      function handleResize() {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+
+        if (wasMobile !== isMobile) {
+          // Screen size crossed the threshold, update the current image
+          const currentStep = Array.from(steps).findIndex(step =>
+            step.classList.contains('is-active')
+          );
+          if (currentStep !== -1) {
+            updateImage(currentStep);
+          }
+        }
+
+        scroller.resize();
+      }
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.7,
+          debug: false,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          updateImage(index);
+          const event = new CustomEvent("stepin", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } });
+          element.dispatchEvent(event);
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } });
+            element.previousElementSibling.dispatchEvent(event);
+          }
+        });
+
+      // Initialize first image on page load
+      updateImage(0);  // Add this line to load the first image immediately
+
+      window.addEventListener("resize", handleResize);
+      handleResize(); // Initial call to set the correct image
+
+      // Set up D3 event listeners
+      for (let i = 1; i <= 5; i++) {
+        d3.select(`#step${i}`).on('stepin', (e) => {
+          updateImage(i - 1);
+        });
+      }
+    })();
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 60vh;
+    }
+  </style>
+
+</body>
+
+</html>
