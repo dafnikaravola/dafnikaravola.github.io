@@ -4,253 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Natura-Costa-Navarino-RU</title>
+  <title><!-- #YOUR-STORY-TITLE--></title>
 
-  <!-- Google fonts - Updated to include Poppins -->
-  <!-- Google fonts - Updated to include Poppins -->
+  <!-- === Fonts & Libraries === -->
+  <!-- Google Fonts used for typography -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> -->
-  <style>
-    /* margin on mobile */
-    @media (max-width: 640px) {
-      body {
-        font-size: 14px;
-      }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
 
-      .content {
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-      }
-    }
+  <!-- External CSS file for scrollytelling visuals. This is were you design stuff like colors, opacities etc -->
+  <link href="scrolly-styles.css" rel="stylesheet">
 
-    /* Reset default margins and padding */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      background-color: #e5e5e5;
-    }
-
-    .scrolly-container {
-      position: relative;
-    }
-
-    .sticky-thing {
-      position: sticky;
-      top: 0;
-      z-index: 0;
-      height: 100vh;
-      width: 100%;
-      justify-content: center;
-      background-color: #e5e5e5;
-    }
-
-    .sticky-thing>img {
-      max-width: 100%;
-      width: 100%;
-      height: auto;
-      max-height: 100vh;
-      object-fit: fill;
-      background-color: #e5e5e5;
-    }
-
-    @media screen and (max-width: 768px) {
-      .sticky-thing {
-        height: 100dvh;
-        /* Using dynamic viewport height for mobile */
-      }
-
-      .sticky-thing>img {
-        height: 100dvh;
-        min-height: 100dvh;
-      }
-    }
-
-    .steps-container {
-      transform: translate3d(0, 0, 0);
-      position: relative;
-      padding: 0px;
-      z-index: 50rem;
-      padding-bottom: 4%;
-    }
-
-    .step {
-      color: #1b1b1b;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      margin-bottom: 100svh;
-      transform: translate(0px, 0px);
-    }
-
-    .step p {
-      font-size: 20px;
-      line-height: 1.6;
-      text-align: left;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      display: inline !important;
-    }
-
-    .step>* {
-      width: 100% !important;
-      max-width: 800px;
-      padding: 3em !important;
-      display: flex;
-      flex-direction: column;
-      align-items: left;
-      margin-right: 5%;
-    }
-
-    /* Media query for mobile devices */
-    @media screen and (max-width: 768px) {
-      .step p {
-        font-size: 17px;
-        line-height: 1.4;
-        text-align: right;
-      }
-
-      .step {
-        justify-content: center;
-        align-items: center;
-      }
-
-      .step>* {
-        width: 90%;
-        padding: 0.5em 0.5em 0.5em 1.5em !important;
-        /* top right bottom left */
-        margin: 0 auto;
-      }
-    }
-
-    .step img {
-      width: 90%;
-      height: auto;
-      margin-top: 1em;
-      display: block;
-    }
-
-    @media screen and (max-width: 768px) {
-      .step img {
-        width: 90%;
-        margin: 0 0 0;
-      }
-    }
-
-    .step p:last-child {
-      padding: 0;
-    }
-
-    .step>* {
-      width: 80%;
-      max-width: 600px;
-      text-align: left;
-      padding: 0.5em 0.5em 0.5em 3em !important;
-      /* top right bottom left */
-      /* background-color: rgba(255, 255, 255, 0.094); */
-      /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Adding subtle drop shadow */
-      backdrop-filter: blur(4px);
-      /* border-radius: 15px; */
-    }
-
-    @media screen and (max-width: 768px) {
-      .step>* {
-        width: 85%;
-        max-width: 500px;
-        padding: 1.5em !important;
-        margin: 0 auto;
-      }
-    }
-
-    .step a {
-      color: #748a9b;
-      text-decoration: underline;
-    }
-
-    .step a:hover {
-      color: #666666;
-    }
-
-
-    .title {
-      font-size: 52px;
-    }
-
-    .subtitle {
-      font-size: 24px;
-      /* Reduced from 32px */
-    }
-
-    .natura {
-      color: #1aa32e;
-      font-size: 20px;
-      display: inline;
-    }
-
-    .natura-red {
-      color: #aa351b;
-      font-size: 20px;
-      display: inline;
-    }
-
-    .justif {
-      color: #247d98;
-      font-size: 20px;
-      display: inline;
-    }
-
-    .step p span {
-      display: inline;
-    }
-
-
-
-
-    /* Add this media query for mobile font sizes */
-    @media screen and (max-width: 768px) {
-      .title {
-        font-size: 35px;
-        /* Reduced from 52px */
-      }
-
-      .subtitle {
-        font-size: 21px;
-        /* Reduced from 32px */
-      }
-
-      .natura {
-        color: #1aa32e;
-        font-size: 18px;
-        display: inline;
-      }
-
-      .natura-red {
-        color: #aa351b;
-        font-size: 18px;
-        display: inline;
-      }
-
-      .justif {
-        color: #247d98;
-        font-size: 18px;
-        display: inline;
-      }
-    }
-  </style>
-  <!-- <link href="scrolly-styles.css" rel="stylesheet"> -->
+  <!-- Scroll interaction scripts  -->
   <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
@@ -258,74 +24,208 @@
 
 <body>
 
+  <!-- SCROLL SECTION: Contains the fixed background and scrollable text steps -->
   <section id="scrolly-images" class="scrolly-container">
     <div class="sticky-thing">
+      <!-- This image stays in place as we scroll -->
       <img src="image1-desktop.webp" alt="Scrolly image">
     </div>
+
+    <!-- These are the scrollable text blocks, one per step -->
     <div class="steps-container">
+
+      <!--
+            ==============================
+            STEP 1: TITLE AND CREDITS
+            ==============================
+            
+            -->
       <div class="step" id="step1">
-        <p>Τα δύο πρώτα ξενοδοχεία του Costa Navarino <i>The Romanos Resort</i> και <i>The Westin Resort Costa Navarino</i> στην ΠΟΤΑ
-          Ρωμανού (Περιοχή Ολοκληρωμένης Τουριστικής Ανάπτυξης) ξεκίνησαν να λειτουργούν το 2010.
-        </p>
-      </div>
-      <div class="step" id="step2">
         <div>
-          <p>To 2012, το <span class="natura">37% της ΠΟΤΑ</span> βρισκόταν
-            εντός της Natura 2000.
+          <p><span class="title"><b>DIY Scrolly Template</b></span> <br>
+            <span class="subtitle">or how to create a vertical scrollytelling with basic coding knowledge and static
+              background images</span><br>
+            <span class="credits">
+              <br><br> This template was initially created by Jonathan Soma.
+              Download it <a href="https://github.com/jsoma/page-templates/" target="_blank">here</a>
+              <br><br> It was later updated by Dafni Karavola - data journalist @ Reporters United.
+              Download it <a href="https://github.com/jsoma/page-templates/" target="_blank">here</a>
+              <br><br> Original scrolly created for Myrto Boutsi's & Dafni Karavola's investigation on Greece's largest
+              touristic complex "Costa Navarino", published by Reporters United,
+              and supported by Journalismfund Europe as part of the journalistic research "No Man's Land: Digging for
+              Water".
+              Read the investigation: <a href="https://www.reportersunited.gr/13681/amilito-nero-costa-navarino/"
+                target="_blank">part 1</a>,
+              <a href="https://www.reportersunited.gr/15653/natura-costa-navarino/" target="_blank">part 2</a>, and
+              <a href="https://www.reportersunited.gr/15438/costa-navarino-3-barbouni/" target="_blank">part 3</a>.
+            </span>
           </p>
         </div>
       </div>
-      <div class="step" id="step3">
-        <p>Το 2017, το υπουργείο Περιβάλλοντος (ΥΠΕΝ) τροποποίησε το όριο όλης της Natura GR2550004. Από την ΠΟΤΑ
-          Ρωμανού, συγκεκριμένα, <span class="natura-red">αφαίρεσε σχεδόν 219 στρέμματα,</span> έβγαλε εκτός
-          Natura τα δύο ξενοδοχεία και προσάρμοσε το όριό της στα όρια της ΠΟΤΑ. Πλέον μόνο το <span class="natura">20% της ΠΟΤΑ βρίσκεται εντός Natura.</span>
-        </p>
-      </div>
-      <div class="step" id="step4">
-        <p><span class="subtitle">Γιατί αφαιρέθηκε αυτή η έκταση;</span><br> Ρωτήσαμε το υπουργείο. Μας απάντησε ότι η
-          «διαφορά εμβαδού» οφείλεται «στην προσαρμογή του παλαιότερου ορίου <span class="justif"> στα όρια της
-            κεντρικής οδού Πύλου-Γαργαλιάνου» και «στα όρια της ακτογραμμής»,</span> δικαιολογώντας έτσι μόνο ένα τμήμα
-          των περικοπών.
-        </p>
-      </div>
-      <div class="step" id="step5">
-        <p>Καμία εξήγηση δεν δόθηκε για τα <span class="natura-red">219 στρέμματα των ξενοδοχείων</span> <i>The Romanos Resort</i>
-           και <i>The Westin Resort Costa Navarino</i> και του γκολφ Navarino Dunes που κόπηκαν από τη Natura του
-          Ρωμανού. Κι όμως, σχεδόν η μισή από την περιοχή Natura εντός της ΠΟΤΑ Ρωμανού έχει αφαιρεθεί.
-        </p>
+
+      <!--
+        ==============================
+        STEP 2: IMAGE EMBED EXAMPLE
+        ==============================
+        This step contains an example of an image added directly into the text column.
+        You can replace the 'src' with your own image URL.
+        -->
+      <div class="step" id="step2">
+        <div>
+          <p>"The Romanos Resort" and "Westin Resort", the first two all-inclusive hotels of the Costa Navarino
+            touristic complex in
+            POTA Romanos (a designated touristic development area in Southern Peloponnese, Greece)
+            started operating in 2011.
+          </p>
+          <!-- This is an inline image inside the step -->
+          <figure>
+            <img src="pota-pylos-costa-navarino.jpg"
+              alt="The Navarino Bay Golf Course and the Mandarin Oriental Costa Navarino Hotel" style="max-width:100%;">
+            <figcaption>The Navarino Bay Golf Course and the Mandarin Oriental Costa Navarino Hotel, within Pota Pylos.
+              Photo: Nikos Palaiologos, Reporters United</figcaption>
+          </figure>
+
+        </div>
       </div>
 
+      <!--
+        ==============================
+        STEP 3: EMBEDDED VIDEO EXAMPLE 
+        ==============================
+        This step contains an example of a Youtube Video embedded directly into the text column.
+        You can replace the 'src' with your own Video URL.
+        -->
+      <div class="step" id="step3">
+        <div>
+          <p>The Natura site GR2550004 was proposed as a Site of Community Importance in 1996, approved by the
+            Commission
+            (along with a total of 239 proposed sites in Greece) in September 2006, while it took another five years,
+            until
+            2011,
+            with Law 3937, to be established by the Greek state as a Special Area of Conservation, in application of the
+            <a href="https://eur-lex.europa.eu/legal-content/EL/TXT/?uri=CELEX:31992L0043" target="_blank">Habitats
+              Directive</a> .
+            <br><br> In 2012, 37% of the POTA Romanos was located within Natura 2000.
+            <!-- YouTube video embed example -->
+            <br><br><iframe width="100%" height="315" src="https://www.youtube.com/embed/u7zJXp3deno"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </p>
+        </div>
+      </div>
+
+      <!--
+              ==============================
+              STEP 4: SOCIAL MEDIA POST EMBED EXAMPLE
+              ==============================
+              This step contains an example of an interactive chart embedded directly into the text column.
+              You can use Flourish or Datawrapper to create the chart and replace the 'src' withe the chart's iframe.
+              -->
+      <div class="step" id="step4">
+        <div>
+          <p> In 2017, the Ministry of Environment (MoE) modified the boundary of the entire Natura GR2550004.
+            It removed almost 219 hectares covered by hotels out of the protected area,
+            and adjusted the Natura 2000 boundary to the boundary of touristic complex. Now only 20% of the POTA is
+            within
+            Natura.
+          </p>
+          <br><br>
+          
+          <!-- Instagram Embed -->
+          <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DJyZp4_Mplb/?utm_source=ig_embed&amp;utm_campaign=loading"
+            data-instgrm-version="14"
+            style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+          </blockquote>
+          <script async src="//www.instagram.com/embed.js"></script>
+          
+        </div>
+      </div>
+
+
+      <!--
+              ==============================
+              STEP 5: QUOTE BLOCK EXAMPLE
+              ==============================
+              This step contains an example of a social media post (like Twitter or Instagram) embedded directly into the text column.
+              -->
+      <div class="step" id="step5">
+        <div>
+          <p>"How do you explain this change?", we asked the ministry.</p>
+          <!-- Block quote example -->
+          <blockquote style="border-left: 4px solid #ccc; padding-left: 1em; margin-top: 1em; font-style: italic;">
+            "We adjusted the protected area's boundaries to better follow the main road's and coastline's outline"
+          </blockquote>
+          <p>they replied, justifying only part of the cuts.</p>
+        </div>
+      </div>
+
+      <!--
+              ==============================
+              STEP 6: INTERACTIVE CHART EMBED EXAMPLE
+              ==============================
+              This step contains an example of a social media post (like Twitter or Instagram) embedded directly into the text column.
+              -->
+      <div class="step" id="step5">
+        <div>
+          <p>No explanation was given for the 219 acres covered by hotels and golf course that were cut from Romanos'
+            Natura.
+            Yet, nearly half of the Natura 2000 area within POTA Romanos has been removed.
+            <!-- Embed from Flourish, Datawrapper, etc. -->
+            <br><br><iframe src='https://flo.uri.sh/visualisation/23243065/embed' title='Interactive or visual content'
+              class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;'
+              sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+          <div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit'
+              href='https://public.flourish.studio/visualisation/23243065/?utm_source=embed&utm_campaign=visualisation/23243065'
+              target='_top' style='text-decoration:none!important'><img alt='Made with Flourish'
+                src='https://public.flourish.studio/resources/made_with_flourish.svg'
+                style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> </a>
+          </div>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
 
+  <!-- === JAVASCRIPT FOR SCROLLYTELLING (what makes your scrolly work)=== -->
   <script>
-    /*************
-    
-    This is the JavaScript that makes the scrolly work 
-    
-    *************/
 
-    /* 
-    This part attaches a scroll to the element with id="scrolly-images"    
-    */
+    /**************************************************************************
+    * This JavaScript section uses the Scrollama library to:
+    * 1. Track which step is currently in view
+    * 2. Change the image that appears on the background
+    * 3. Respond to screen size changes (desktop/mobile)
+   **************************************************************************/
+
     (() => {
-      const scroller = scrollama()
-      const steps = document.querySelectorAll('.step');
-      const stickyImage = document.querySelector('.sticky-thing img');
-      let isMobile = window.innerWidth <= 768;
+      const scroller = scrollama() // Initializes the scrollama instance
+      const steps = document.querySelectorAll('.step'); // All .step elements in our HTML
+      const stickyImage = document.querySelector('.sticky-thing img'); // The image that remains fixed
+      let isMobile = window.innerWidth <= 768; // Check if the device is a mobile
 
+      /*  
+      This part picks an image according to its number, desktop or mobile indicator and suffix
+      "image[NUMBER]-[desktop or mobile].suffix [.jpeg or .png or .webp]"   
+      for example "image5-mobile.png" is the image used for step in the mobile version and its type is png
+      "image2-desktop.webp" is the image used in step 2 in the desktop versio and its type is webp 
+      */
       function updateImage(index) {
         const suffix = isMobile ? '-mobile' : '-desktop';
-        stickyImage.src = `image${index + 1}${suffix}.webp`;
+        stickyImage.src = `image${index + 1}${suffix}.jpg`; /*If you work with png or jpeg don't forget to change the .webp suffix*/
       }
 
+      /**
+       * Triggered when screen resizes. It updates whether we are in mobile view
+       * and loads the appropriate image if needed.
+       */
       function handleResize() {
         const wasMobile = isMobile;
         isMobile = window.innerWidth <= 768;
 
+        // If layout changes (e.g., mobile to desktop), update image accordingly
         if (wasMobile !== isMobile) {
-          // Screen size crossed the threshold, update the current image
           const currentStep = Array.from(steps).findIndex(step =>
             step.classList.contains('is-active')
           );
@@ -334,18 +234,19 @@
           }
         }
 
-        scroller.resize();
+        scroller.resize(); // Tell scrollama to recalculate layout
       }
 
+      // Set up Scrollama steps
       scroller
         .setup({
           parent: document.querySelector("#scrolly-images"),
           step: ".step",
-          offset: 0.7,
+          offset: 0.75, // How far down the screen a step needs to be to trigger - you can play with this number and see what fits your preferences
           debug: false,
         })
         .onStepEnter(function ({ element, index, direction }) {
-          updateImage(index);
+          updateImage(index); // When a new step enters, update the image
           const event = new CustomEvent("stepin", { detail: { direction: direction } });
           element.dispatchEvent(event);
         })
@@ -359,12 +260,11 @@
         });
 
       // Initialize first image on page load
-      updateImage(0);  // Add this line to load the first image immediately
-
+      updateImage(0);
       window.addEventListener("resize", handleResize);
-      handleResize(); // Initial call to set the correct image
+      handleResize(); /// Initial check
 
-      // Set up D3 event listeners
+      // OPTIONAL: React to D3 listeners if you want to attach custom logic per step
       for (let i = 1; i <= 5; i++) {
         d3.select(`#step${i}`).on('stepin', (e) => {
           updateImage(i - 1);
@@ -372,8 +272,9 @@
       }
     })();
   </script>
+
+  <!-- Additional style for spacing between steps -->
   <style>
-    /* Change this to adjust the padding between steps */
     .step {
       margin-bottom: 60vh;
     }
